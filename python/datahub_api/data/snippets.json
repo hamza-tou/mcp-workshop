@@ -1,0 +1,102 @@
+[
+    {
+        "snippet_id": "graphql-query-example",
+        "title": "GraphQL Query avec fragments",
+        "code": "fragment UserFields on User {\n  id\n  name\n  email\n}\n\nquery GetUserWithPosts($userId: ID!) {\n  user(id: $userId) {\n    ...UserFields\n    posts(limit: 5) {\n      id\n      title\n      content\n      createdAt\n    }\n  }\n}",
+        "language": "graphql",
+        "type": "query",
+        "service": "graphql-api",
+        "description": "Exemple de requête GraphQL utilisant des fragments pour réutiliser des sélections de champs",
+        "created_at": "2025-01-12T09:30:00Z"
+    },
+    {
+        "snippet_id": "postgres-json-query",
+        "title": "Requête PostgreSQL sur colonne JSON",
+        "code": "-- Rechercher dans une colonne JSONB\nSELECT id, data->>'name' as name, data->'metadata'->>'tags' as tags\nFROM documents\nWHERE data @> '{\"status\": \"published\"}'\n  AND data->'metadata' ? 'featured'\nORDER BY (data->>'created_at')::timestamp DESC\nLIMIT 10;",
+        "language": "sql",
+        "type": "query",
+        "service": "postgresql",
+        "description": "Requête complexe sur des colonnes JSONB avec opérateurs PostgreSQL",
+        "created_at": "2025-01-10T14:20:00Z"
+    },
+    {
+        "snippet_id": "redis-cache-pattern",
+        "title": "Pattern cache-aside avec Redis",
+        "code": "import redis\nimport json\nfrom typing import Optional\n\nredis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)\n\ndef get_user(user_id: int) -> Optional[dict]:\n    # Try cache first\n    cache_key = f\"user:{user_id}\"\n    cached = redis_client.get(cache_key)\n    \n    if cached:\n        return json.loads(cached)\n    \n    # Cache miss: fetch from database\n    user = db.query(User).get(user_id)\n    \n    if user:\n        # Store in cache with 1 hour TTL\n        redis_client.setex(\n            cache_key,\n            3600,\n            json.dumps(user.to_dict())\n        )\n    \n    return user.to_dict() if user else None",
+        "language": "python",
+        "type": "function",
+        "service": "redis",
+        "description": "Implémentation du pattern cache-aside avec Redis pour améliorer les performances",
+        "created_at": "2025-01-09T10:15:00Z"
+    },
+    {
+        "snippet_id": "kubernetes-health-checks",
+        "title": "Health checks Kubernetes",
+        "code": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: my-app\nspec:\n  containers:\n  - name: my-app\n    image: my-app:1.0.0\n    ports:\n    - containerPort: 8080\n    livenessProbe:\n      httpGet:\n        path: /health/live\n        port: 8080\n      initialDelaySeconds: 30\n      periodSeconds: 10\n      timeoutSeconds: 5\n      failureThreshold: 3\n    readinessProbe:\n      httpGet:\n        path: /health/ready\n        port: 8080\n      initialDelaySeconds: 10\n      periodSeconds: 5\n      timeoutSeconds: 3\n      failureThreshold: 2\n    resources:\n      requests:\n        memory: \"128Mi\"\n        cpu: \"100m\"\n      limits:\n        memory: \"256Mi\"\n        cpu: \"200m\"",
+        "language": "yaml",
+        "type": "config",
+        "service": "kubernetes",
+        "description": "Configuration complète des probes liveness et readiness pour Kubernetes",
+        "created_at": "2025-01-13T11:45:00Z"
+    },
+    {
+        "snippet_id": "jwt-middleware-fastapi",
+        "title": "Middleware JWT pour FastAPI",
+        "code": "from fastapi import Depends, HTTPException, status\nfrom fastapi.security import HTTPBearer, HTTPAuthorizationCredentials\nimport jwt\nfrom datetime import datetime, timedelta\n\nsecurity = HTTPBearer()\nSECRET_KEY = \"your-secret-key\"\nALGORITHM = \"HS256\"\n\ndef create_access_token(data: dict, expires_delta: timedelta = timedelta(hours=1)):\n    to_encode = data.copy()\n    expire = datetime.utcnow() + expires_delta\n    to_encode.update({\"exp\": expire})\n    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)\n    return encoded_jwt\n\nasync def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):\n    try:\n        token = credentials.credentials\n        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])\n        user_id: str = payload.get(\"sub\")\n        if user_id is None:\n            raise HTTPException(\n                status_code=status.HTTP_401_UNAUTHORIZED,\n                detail=\"Invalid authentication credentials\"\n            )\n        return user_id\n    except jwt.ExpiredSignatureError:\n        raise HTTPException(\n            status_code=status.HTTP_401_UNAUTHORIZED,\n            detail=\"Token has expired\"\n        )\n    except jwt.JWTError:\n        raise HTTPException(\n            status_code=status.HTTP_401_UNAUTHORIZED,\n            detail=\"Could not validate credentials\"\n        )",
+        "language": "python",
+        "type": "middleware",
+        "service": "fastapi",
+        "description": "Middleware d'authentification JWT pour FastAPI avec gestion des erreurs",
+        "created_at": "2025-01-11T15:30:00Z"
+    },
+    {
+        "snippet_id": "github-actions-ci",
+        "title": "GitHub Actions CI pipeline",
+        "code": "name: CI\n\non:\n  push:\n    branches: [ main, develop ]\n  pull_request:\n    branches: [ main ]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    \n    services:\n      postgres:\n        image: postgres:15\n        env:\n          POSTGRES_PASSWORD: postgres\n        options: >-\n          --health-cmd pg_isready\n          --health-interval 10s\n          --health-timeout 5s\n          --health-retries 5\n    \n    steps:\n    - uses: actions/checkout@v3\n    \n    - name: Set up Python\n      uses: actions/setup-python@v4\n      with:\n        python-version: '3.11'\n    \n    - name: Install dependencies\n      run: |\n        pip install uv\n        uv sync\n    \n    - name: Lint\n      run: |\n        uv run ruff check .\n        uv run black --check .\n    \n    - name: Run tests\n      run: |\n        uv run pytest tests/ --cov=app --cov-report=xml\n      env:\n        DATABASE_URL: postgresql://postgres:postgres@localhost/test\n    \n    - name: Upload coverage\n      uses: codecov/codecov-action@v3\n      with:\n        file: ./coverage.xml",
+        "language": "yaml",
+        "type": "config",
+        "service": "github-actions",
+        "description": "Pipeline CI complet avec tests, linting et couverture de code",
+        "created_at": "2025-01-08T08:00:00Z"
+    },
+    {
+        "snippet_id": "docker-compose-dev",
+        "title": "Docker Compose pour développement",
+        "code": "version: '3.8'\n\nservices:\n  api:\n    build:\n      context: .\n      dockerfile: Dockerfile.dev\n    ports:\n      - \"8000:8000\"\n    volumes:\n      - .:/app\n      - /app/node_modules\n    environment:\n      - DATABASE_URL=postgresql://user:password@db:5432/myapp\n      - REDIS_URL=redis://redis:6379\n    depends_on:\n      db:\n        condition: service_healthy\n      redis:\n        condition: service_started\n    command: uvicorn main:app --reload --host 0.0.0.0\n  \n  db:\n    image: postgres:15-alpine\n    environment:\n      - POSTGRES_USER=user\n      - POSTGRES_PASSWORD=password\n      - POSTGRES_DB=myapp\n    ports:\n      - \"5432:5432\"\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n    healthcheck:\n      test: [\"CMD-SHELL\", \"pg_isready -U user\"]\n      interval: 10s\n      timeout: 5s\n      retries: 5\n  \n  redis:\n    image: redis:7-alpine\n    ports:\n      - \"6379:6379\"\n    volumes:\n      - redis_data:/data\n\nvolumes:\n  postgres_data:\n  redis_data:",
+        "language": "yaml",
+        "type": "config",
+        "service": "docker",
+        "description": "Configuration Docker Compose pour environnement de développement avec API, PostgreSQL et Redis",
+        "created_at": "2025-01-14T16:20:00Z"
+    },
+    {
+        "snippet_id": "alembic-migration",
+        "title": "Migration Alembic avec données",
+        "code": "\"\"\"Add user roles table\n\nRevision ID: abc123def456\nRevises: previous_revision\nCreate Date: 2025-01-15 10:00:00.000000\n\n\"\"\"\nfrom alembic import op\nimport sqlalchemy as sa\nfrom sqlalchemy.sql import table, column\n\ndef upgrade():\n    # Create roles table\n    roles_table = op.create_table(\n        'roles',\n        sa.Column('id', sa.Integer(), primary_key=True),\n        sa.Column('name', sa.String(50), unique=True, nullable=False),\n        sa.Column('description', sa.Text()),\n        sa.Column('created_at', sa.DateTime(), server_default=sa.func.now())\n    )\n    \n    # Add role_id to users table\n    op.add_column('users', sa.Column('role_id', sa.Integer(), nullable=True))\n    op.create_foreign_key(\n        'fk_users_role_id',\n        'users', 'roles',\n        ['role_id'], ['id']\n    )\n    \n    # Insert default roles\n    roles = table('roles',\n        column('name', sa.String),\n        column('description', sa.String)\n    )\n    op.bulk_insert(roles, [\n        {'name': 'admin', 'description': 'Administrator with full access'},\n        {'name': 'user', 'description': 'Regular user'},\n        {'name': 'guest', 'description': 'Guest with limited access'}\n    ])\n    \n    # Set default role for existing users\n    op.execute(\"\"\"\n        UPDATE users \n        SET role_id = (SELECT id FROM roles WHERE name = 'user')\n        WHERE role_id IS NULL\n    \"\"\")\n    \n    # Make role_id non-nullable\n    op.alter_column('users', 'role_id', nullable=False)\n\ndef downgrade():\n    op.drop_constraint('fk_users_role_id', 'users', type_='foreignkey')\n    op.drop_column('users', 'role_id')\n    op.drop_table('roles')",
+        "language": "python",
+        "type": "migration",
+        "service": "alembic",
+        "description": "Migration Alembic complète avec création de table, données initiales et modification de schéma",
+        "created_at": "2025-01-07T13:45:00Z"
+    },
+    {
+        "snippet_id": "prometheus-metrics",
+        "title": "Métriques Prometheus pour FastAPI",
+        "code": "from prometheus_client import Counter, Histogram, Gauge, generate_latest\nfrom fastapi import FastAPI, Response\nimport time\n\napp = FastAPI()\n\n# Métriques\nrequest_count = Counter(\n    'http_requests_total',\n    'Total HTTP requests',\n    ['method', 'endpoint', 'status']\n)\n\nrequest_duration = Histogram(\n    'http_request_duration_seconds',\n    'HTTP request latency',\n    ['method', 'endpoint']\n)\n\nactive_requests = Gauge(\n    'http_requests_active',\n    'Active HTTP requests'\n)\n\n@app.middleware(\"http\")\nasync def metrics_middleware(request, call_next):\n    active_requests.inc()\n    start_time = time.time()\n    \n    try:\n        response = await call_next(request)\n        duration = time.time() - start_time\n        \n        request_count.labels(\n            method=request.method,\n            endpoint=request.url.path,\n            status=response.status_code\n        ).inc()\n        \n        request_duration.labels(\n            method=request.method,\n            endpoint=request.url.path\n        ).observe(duration)\n        \n        return response\n    finally:\n        active_requests.dec()\n\n@app.get(\"/metrics\")\nasync def metrics():\n    return Response(content=generate_latest(), media_type=\"text/plain\")",
+        "language": "python",
+        "type": "middleware",
+        "service": "prometheus",
+        "description": "Middleware FastAPI pour exposer des métriques Prometheus (requêtes, latence, etc.)",
+        "created_at": "2025-01-06T11:00:00Z"
+    },
+    {
+        "snippet_id": "retry-pattern",
+        "title": "Pattern retry avec backoff exponentiel",
+        "code": "import asyncio\nimport httpx\nfrom typing import TypeVar, Callable\nimport logging\n\nT = TypeVar('T')\n\nlogger = logging.getLogger(__name__)\n\nasync def retry_with_backoff(\n    func: Callable[..., T],\n    max_retries: int = 3,\n    base_delay: float = 1.0,\n    max_delay: float = 60.0,\n    exponential_base: float = 2.0,\n    exceptions: tuple = (httpx.HTTPError,)\n) -> T:\n    \"\"\"\n    Retry a function with exponential backoff.\n    \n    Args:\n        func: Async function to retry\n        max_retries: Maximum number of retry attempts\n        base_delay: Initial delay in seconds\n        max_delay: Maximum delay in seconds\n        exponential_base: Base for exponential backoff\n        exceptions: Tuple of exceptions to catch\n    \"\"\"\n    last_exception = None\n    \n    for attempt in range(max_retries + 1):\n        try:\n            return await func()\n        except exceptions as e:\n            last_exception = e\n            \n            if attempt == max_retries:\n                logger.error(f\"All {max_retries} retries failed: {e}\")\n                raise\n            \n            delay = min(base_delay * (exponential_base ** attempt), max_delay)\n            logger.warning(\n                f\"Attempt {attempt + 1} failed: {e}. \"\n                f\"Retrying in {delay:.2f}s...\"\n            )\n            await asyncio.sleep(delay)\n    \n    raise last_exception\n\n# Usage\nasync def fetch_data(url: str):\n    async with httpx.AsyncClient() as client:\n        response = await retry_with_backoff(\n            lambda: client.get(url),\n            max_retries=3\n        )\n        return response.json()",
+        "language": "python",
+        "type": "function",
+        "service": "resilience",
+        "description": "Pattern de retry avec backoff exponentiel pour améliorer la résilience des appels API",
+        "created_at": "2025-01-05T09:30:00Z"
+    }
+]

@@ -18,28 +18,73 @@ Ce serveur MCP servira de fondation pour les expérimentations futures.
 Créer un serveur MCP minimal capable de :
 - démarrer localement
 - afficher des logs de démarrage
-- ne pas exposer de tool ni de resource
+- exposer un tool simple `hello_server` pour tester la communication
 
----
 
-## HOW
+### Création du serveur
 
-- Travaille dans le dossier `mcp/exercises/exo1/`
-- Crée un serveur MCP minimal (point d’entrée, configuration)
-- Démarre le serveur localement
-- Vérifie les logs de démarrage
+Travaille dans `python/mcp/server.py`.
+
+**Structure minimale avec FastMCP** :
+```python
+from fastmcp import FastMCP
+
+# Créer l'instance du serveur
+mcp = FastMCP("DataHub MCP Server")
+
+# Tool simple pour tester
+@mcp.tool()
+def hello_server() -> str:
+    """Tool de test simple qui retourne un message de bienvenue."""
+    return "Hello mcp server here !"
+
+# Point d'entrée
+if __name__ == "__main__":
+    mcp.run(transport="sse", port=8001, path="/mcp")
+```
+
+### Démarrage
+
+Depuis le répertoire `python/` :
+```bash
+uv run python -m mcp.server
+```
+
+### Logs attendus
+
+Vous devriez voir quelque chose comme :
+```
+Starting MCP server...
+Server: DataHub MCP Server
+Tools: 1 (hello_server)
+Resources: 0
+Running on http://localhost:8001/mcp
+```
+
+### Tester le tool
+
+Une fois le serveur lancé et connecté à Copilot :
+```
+# Dans Copilot Chat
+#hello_server
+```
+
+Vous devriez recevoir : `Hello mcp server here !`
 
 ---
 
 ## RESSOURCES
 
-- Documentation MCP fournie
-- Code du serveur MCP de référence (`mcp/reference_server/`)
+- [Guide Python complet](python/README.md) - Setup détaillé avec uv
+- [Guide MCP](python/mcp/README.md) - Comment tester avec Copilot
+- [Documentation FastMCP](https://github.com/jlowin/fastmcp)
+- [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation complète
 
 ---
 
 ## VALIDATION CRITERIA
 
-- Le serveur MCP démarre sans erreur
-- Les logs indiquent que le serveur est prêt
-- Aucun tool ni resource n’est exposé
+- Le serveur MCP démarre sans erreur sur `http://localhost:8001/mcp`
+- Les logs indiquent que le serveur est prêt avec 1 tool
+- Le tool `hello_server` est accessible et retourne le message attendu
+- Le serveur peut être connecté à GitHub Copilot via HTTP

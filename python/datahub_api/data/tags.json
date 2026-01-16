@@ -1,0 +1,142 @@
+[
+    {
+        "tag": "api",
+        "description": "Conception et développement d'APIs"
+    },
+    {
+        "tag": "rest",
+        "description": "APIs REST et principes RESTful"
+    },
+    {
+        "tag": "graphql",
+        "description": "GraphQL queries, mutations et schemas"
+    },
+    {
+        "tag": "architecture",
+        "description": "Patterns et principes d'architecture logicielle"
+    },
+    {
+        "tag": "microservices",
+        "description": "Architecture microservices et distributed systems"
+    },
+    {
+        "tag": "security",
+        "description": "Sécurité, authentification et autorisation"
+    },
+    {
+        "tag": "authentication",
+        "description": "Mécanismes d'authentification (JWT, OAuth, etc.)"
+    },
+    {
+        "tag": "jwt",
+        "description": "JSON Web Tokens"
+    },
+    {
+        "tag": "oauth",
+        "description": "Protocole OAuth2"
+    },
+    {
+        "tag": "kubernetes",
+        "description": "Orchestration de conteneurs avec Kubernetes"
+    },
+    {
+        "tag": "devops",
+        "description": "Pratiques DevOps et infrastructure"
+    },
+    {
+        "tag": "ci-cd",
+        "description": "Continuous Integration et Continuous Deployment"
+    },
+    {
+        "tag": "deployment",
+        "description": "Stratégies et outils de déploiement"
+    },
+    {
+        "tag": "containers",
+        "description": "Docker et technologies de conteneurisation"
+    },
+    {
+        "tag": "database",
+        "description": "Bases de données et modélisation"
+    },
+    {
+        "tag": "migration",
+        "description": "Migrations de bases de données et schémas"
+    },
+    {
+        "tag": "sql",
+        "description": "SQL et requêtes de bases de données"
+    },
+    {
+        "tag": "monitoring",
+        "description": "Monitoring et observabilité des systèmes"
+    },
+    {
+        "tag": "observability",
+        "description": "Logs, metrics et traces"
+    },
+    {
+        "tag": "performance",
+        "description": "Optimisation et performance"
+    },
+    {
+        "tag": "caching",
+        "description": "Stratégies de mise en cache"
+    },
+    {
+        "tag": "rate-limiting",
+        "description": "Limitation de débit et throttling"
+    },
+    {
+        "tag": "versioning",
+        "description": "Versioning d'APIs"
+    },
+    {
+        "tag": "documentation",
+        "description": "Documentation technique et APIs"
+    },
+    {
+        "tag": "openapi",
+        "description": "Spécification OpenAPI / Swagger"
+    },
+    {
+        "tag": "swagger",
+        "description": "Swagger / OpenAPI documentation"
+    },
+    {
+        "tag": "websocket",
+        "description": "Communication WebSocket et temps réel"
+    },
+    {
+        "tag": "realtime",
+        "description": "Communication temps réel"
+    },
+    {
+        "tag": "testing",
+        "description": "Tests et qualité logicielle"
+    },
+    {
+        "tag": "quality",
+        "description": "Assurance qualité et bonnes pratiques"
+    },
+    {
+        "tag": "best-practices",
+        "description": "Bonnes pratiques de développement"
+    },
+    {
+        "tag": "pagination",
+        "description": "Pagination de résultats"
+    },
+    {
+        "tag": "patterns",
+        "description": "Design patterns et patterns architecturaux"
+    },
+    {
+        "tag": "distributed-systems",
+        "description": "Systèmes distribués"
+    },
+    {
+        "tag": "automation",
+        "description": "Automatisation des processus"
+    }
+]

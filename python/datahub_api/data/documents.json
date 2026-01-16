@@ -1,0 +1,212 @@
+[
+    {
+        "doc_id": "rest-api-design",
+        "title": "Guide de conception d'API REST",
+        "content": "# Guide de conception d'API REST\n\n## Principes fondamentaux\n\nLes API REST suivent les principes architecturaux REST (Representational State Transfer). Voici les bonnes pratiques :\n\n### 1. Utilisation des verbes HTTP\n\n- GET : Récupération de ressources\n- POST : Création de ressources\n- PUT : Mise à jour complète\n- PATCH : Mise à jour partielle\n- DELETE : Suppression\n\n### 2. Nommage des ressources\n\nUtilisez des noms au pluriel et des URLs hiérarchiques :\n- `/users` - Liste des utilisateurs\n- `/users/{id}` - Un utilisateur spécifique\n- `/users/{id}/posts` - Posts d'un utilisateur\n\n### 3. Codes de statut HTTP\n\n- 200 OK : Succès\n- 201 Created : Création réussie\n- 400 Bad Request : Requête invalide\n- 404 Not Found : Ressource non trouvée\n- 500 Internal Server Error : Erreur serveur\n\n### 4. Versioning\n\nVersionnez vos APIs via l'URL : `/api/v1/users` ou via headers.",
+        "tags": [
+            "api",
+            "rest",
+            "architecture",
+            "best-practices"
+        ],
+        "owner": "alice.martin@company.com",
+        "created_at": "2025-01-10T10:00:00Z",
+        "updated_at": "2025-01-15T14:30:00Z"
+    },
+    {
+        "doc_id": "graphql-intro",
+        "title": "Introduction à GraphQL",
+        "content": "# Introduction à GraphQL\n\nGraphQL est un langage de requête pour API et un runtime pour exécuter ces requêtes.\n\n## Avantages par rapport à REST\n\n### 1. Requêtes précises\nLe client demande exactement les données dont il a besoin :\n```graphql\nquery {\n  user(id: \"123\") {\n    name\n    email\n  }\n}\n```\n\n### 2. Un seul endpoint\nPas besoin de multiples URLs, tout passe par `/graphql`.\n\n### 3. Typage fort\nLe schéma GraphQL définit tous les types disponibles.\n\n### 4. Évite le sur-fetching et sous-fetching\nREST renvoie souvent trop ou pas assez de données.\n\n## Inconvénients\n\n- Complexité de mise en cache\n- Courbe d'apprentissage\n- Overhead pour des cas simples",
+        "tags": [
+            "graphql",
+            "api",
+            "architecture"
+        ],
+        "owner": "bob.dupont@company.com",
+        "created_at": "2025-01-08T09:15:00Z",
+        "updated_at": "2025-01-08T09:15:00Z"
+    },
+    {
+        "doc_id": "microservices-patterns",
+        "title": "Patterns de microservices",
+        "content": "# Patterns de microservices\n\nLes microservices sont une approche architecturale qui structure une application comme un ensemble de services faiblement couplés.\n\n## Patterns essentiels\n\n### 1. API Gateway\nPoint d'entrée unique qui route les requêtes vers les microservices appropriés.\n\n**Avantages** :\n- Simplifie le client\n- Centralise l'authentification\n- Rate limiting centralisé\n\n### 2. Service Discovery\nMécanisme permettant aux services de se trouver dynamiquement.\n\n**Solutions** : Consul, Eureka, Kubernetes Service\n\n### 3. Circuit Breaker\nProtège contre les défaillances en cascade.\n\n**Implémentation** : Resilience4j, Hystrix\n\n### 4. Event-Driven Architecture\nCommunication asynchrone via événements.\n\n**Technologies** : Kafka, RabbitMQ, AWS SQS\n\n### 5. Saga Pattern\nGestion des transactions distribuées.\n\n**Types** :\n- Choreography : Chaque service publie des événements\n- Orchestration : Un coordinateur central",
+        "tags": [
+            "microservices",
+            "architecture",
+            "patterns",
+            "distributed-systems"
+        ],
+        "owner": "alice.martin@company.com",
+        "created_at": "2024-12-15T11:20:00Z",
+        "updated_at": "2025-01-12T16:45:00Z"
+    },
+    {
+        "doc_id": "api-authentication",
+        "title": "Authentification API : JWT vs OAuth2",
+        "content": "# Authentification API : JWT vs OAuth2\n\n## JSON Web Tokens (JWT)\n\n### Structure\nUn JWT est composé de 3 parties séparées par des points :\n```\nheader.payload.signature\n```\n\n### Avantages\n- Stateless : pas besoin de session serveur\n- Contient des claims (informations utilisateur)\n- Peut être vérifié sans appel DB\n\n### Inconvénients\n- Impossible à révoquer facilement\n- Taille importante dans les headers\n\n## OAuth2\n\n### Flux Authorization Code\n1. Client demande authorization code\n2. Utilisateur s'authentifie\n3. Authorization code échangé contre access token\n4. Access token utilisé pour les requêtes API\n\n### Avantages\n- Standard industrie\n- Gestion de la révocation\n- Refresh tokens\n- Scopes granulaires\n\n### Types de tokens\n- **Access token** : courte durée (15min - 1h)\n- **Refresh token** : longue durée, permet de renouveler l'access token\n\n## Recommandations\n\n- API interne simple → JWT\n- API publique / tiers → OAuth2\n- Applications mobiles → OAuth2 avec PKCE",
+        "tags": [
+            "api",
+            "security",
+            "authentication",
+            "jwt",
+            "oauth"
+        ],
+        "owner": "charlie.bernard@company.com",
+        "created_at": "2025-01-05T13:00:00Z",
+        "updated_at": "2025-01-14T10:20:00Z"
+    },
+    {
+        "doc_id": "kubernetes-deployment",
+        "title": "Guide de déploiement Kubernetes",
+        "content": "# Guide de déploiement Kubernetes\n\nKubernetes (K8s) est une plateforme d'orchestration de conteneurs.\n\n## Concepts clés\n\n### Pod\nUnité de déploiement de base, contenant un ou plusieurs conteneurs.\n\n### Deployment\nGère le déploiement et la mise à l'échelle des Pods.\n\n```yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: my-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: my-app\n  template:\n    metadata:\n      labels:\n        app: my-app\n    spec:\n      containers:\n      - name: my-app\n        image: my-app:1.0.0\n        ports:\n        - containerPort: 8080\n```\n\n### Service\nExpose les Pods au réseau.\n\n**Types** :\n- ClusterIP : interne au cluster\n- NodePort : expose sur un port du node\n- LoadBalancer : crée un load balancer cloud\n\n### ConfigMap et Secrets\n- **ConfigMap** : configuration non-sensible\n- **Secret** : données sensibles (mots de passe, tokens)\n\n## Bonnes pratiques\n\n1. Utilisez des health checks (liveness, readiness)\n2. Définissez des resource limits\n3. Utilisez des namespaces pour isoler les environnements\n4. Versionnez vos manifestes dans Git",
+        "tags": [
+            "kubernetes",
+            "devops",
+            "deployment",
+            "containers"
+        ],
+        "owner": "diane.rousseau@company.com",
+        "created_at": "2024-12-20T08:30:00Z",
+        "updated_at": "2025-01-13T09:10:00Z"
+    },
+    {
+        "doc_id": "ci-cd-best-practices",
+        "title": "CI/CD : Bonnes pratiques",
+        "content": "# CI/CD : Bonnes pratiques\n\nContinuous Integration et Continuous Deployment automatisent le processus de livraison.\n\n## Continuous Integration (CI)\n\n### Principes\n1. Commits fréquents sur la branche principale\n2. Build automatique à chaque commit\n3. Tests automatisés\n4. Feedback rapide (< 10 minutes)\n\n### Pipeline CI typique\n```yaml\nstages:\n  - lint\n  - test\n  - build\n  - security-scan\n```\n\n### Outils\n- GitHub Actions\n- GitLab CI\n- Jenkins\n- CircleCI\n\n## Continuous Deployment (CD)\n\n### Stratégies de déploiement\n\n#### 1. Blue-Green\nDeux environnements identiques. Switch instantané.\n\n#### 2. Canary\nDéploiement progressif : 5% → 25% → 50% → 100%\n\n#### 3. Rolling Update\nRemplacement progressif des instances.\n\n### Feature Flags\nPermet de déployer du code désactivé et l'activer dynamiquement.\n\n## Bonnes pratiques\n\n1. **Tests pyramide** : beaucoup de tests unitaires, moins d'intégration, peu d'E2E\n2. **Immutabilité** : ne modifiez jamais un artefact déployé\n3. **Rollback rapide** : possibilité de revenir en arrière en < 5 min\n4. **Monitoring** : observabilité dès le premier déploiement",
+        "tags": [
+            "ci-cd",
+            "devops",
+            "automation",
+            "best-practices"
+        ],
+        "owner": "alice.martin@company.com",
+        "created_at": "2024-12-18T14:00:00Z",
+        "updated_at": "2025-01-11T11:30:00Z"
+    },
+    {
+        "doc_id": "database-migration-guide",
+        "title": "Guide de migration de base de données",
+        "content": "# Guide de migration de base de données\n\nLes migrations permettent de versionner et appliquer les changements de schéma de manière contrôlée.\n\n## Outils de migration\n\n### Python\n- **Alembic** (SQLAlchemy)\n- **Django migrations**\n\n### Node.js\n- **Knex.js**\n- **TypeORM**\n- **Prisma**\n\n### Java\n- **Flyway**\n- **Liquibase**\n\n## Bonnes pratiques\n\n### 1. Migrations incrémentales\nChaque migration doit être atomique et réversible.\n\n```python\n# Migration 001: Create users table\ndef upgrade():\n    op.create_table(\n        'users',\n        sa.Column('id', sa.Integer(), primary_key=True),\n        sa.Column('email', sa.String(255), unique=True),\n        sa.Column('created_at', sa.DateTime())\n    )\n\ndef downgrade():\n    op.drop_table('users')\n```\n\n### 2. Never modify existing migrations\nUne fois déployée, une migration ne doit jamais être modifiée.\n\n### 3. Test des migrations\n- Testez upgrade ET downgrade\n- Testez sur un dump de production\n\n### 4. Migrations zero-downtime\n\nPour ajouter une colonne required :\n1. Ajoutez la colonne nullable\n2. Populez les données\n3. Rendez la colonne required\n\n## Gestion des données\n\n### Migrations de données vs schéma\nSéparez les migrations de schéma des migrations de données.\n\n### Backups\nToujours faire un backup avant une migration en production.",
+        "tags": [
+            "database",
+            "migration",
+            "devops",
+            "sql"
+        ],
+        "owner": "bob.dupont@company.com",
+        "created_at": "2025-01-02T10:45:00Z",
+        "updated_at": "2025-01-10T15:20:00Z"
+    },
+    {
+        "doc_id": "api-rate-limiting",
+        "title": "Rate Limiting pour APIs",
+        "content": "# Rate Limiting pour APIs\n\nLe rate limiting protège vos APIs contre les abus et garantit une qualité de service équitable.\n\n## Algorithmes\n\n### 1. Token Bucket\nUn seau contient N tokens. Chaque requête consomme 1 token. Les tokens se régénèrent.\n\n**Avantages** : Permet des bursts\n\n### 2. Leaky Bucket\nLes requêtes sont traitées à un taux constant.\n\n**Avantages** : Lisse le trafic\n\n### 3. Fixed Window\nX requêtes par fenêtre de temps fixe (ex: 100/heure).\n\n**Inconvénient** : Pics à la transition entre fenêtres\n\n### 4. Sliding Window\nCombinaison de fixed window et compteur glissant.\n\n## Implémentation\n\n### Headers HTTP\nInformez le client des limites :\n```\nX-RateLimit-Limit: 100\nX-RateLimit-Remaining: 47\nX-RateLimit-Reset: 1640995200\n```\n\n### Codes HTTP\n- **429 Too Many Requests** : limite atteinte\n- **Retry-After** header : quand réessayer\n\n### Solutions\n- **Redis** : stockage distribué des compteurs\n- **API Gateway** : AWS API Gateway, Kong, Nginx\n\n## Stratégies\n\n### Par endpoint\nEndpoints critiques : limites plus strictes\n\n### Par utilisateur/API key\nUtilisateurs premium : limites plus élevées\n\n### Par IP\nProtection contre les attaques",
+        "tags": [
+            "api",
+            "security",
+            "rate-limiting",
+            "best-practices"
+        ],
+        "owner": "charlie.bernard@company.com",
+        "created_at": "2024-12-28T16:30:00Z",
+        "updated_at": "2025-01-09T13:45:00Z"
+    },
+    {
+        "doc_id": "monitoring-observability",
+        "title": "Monitoring et Observabilité",
+        "content": "# Monitoring et Observabilité\n\nL'observabilité permet de comprendre l'état interne d'un système à partir de ses outputs.\n\n## Les 3 piliers\n\n### 1. Logs\nEnregistrements d'événements.\n\n**Structured logging** :\n```json\n{\n  \"timestamp\": \"2025-01-16T10:30:00Z\",\n  \"level\": \"ERROR\",\n  \"service\": \"api-gateway\",\n  \"message\": \"Database connection failed\",\n  \"error\": \"Connection timeout\",\n  \"duration_ms\": 5000\n}\n```\n\n**Outils** : ELK Stack, Loki, CloudWatch\n\n### 2. Metrics\nValeurs numériques dans le temps.\n\n**Types** :\n- **Counter** : toujours croissant (requêtes totales)\n- **Gauge** : valeur instantanée (CPU usage)\n- **Histogram** : distribution (latences)\n\n**Outils** : Prometheus, Grafana, Datadog\n\n### 3. Traces\nSuivi d'une requête à travers les services.\n\n**Distributed tracing** : OpenTelemetry, Jaeger, Zipkin\n\n## Métriques essentielles (Golden Signals)\n\n1. **Latency** : temps de réponse\n2. **Traffic** : nombre de requêtes\n3. **Errors** : taux d'erreur\n4. **Saturation** : utilisation des ressources\n\n## Alerting\n\n### Bonnes pratiques\n- Alertes actionnables uniquement\n- Éviter les fausses alertes\n- Documenter les runbooks\n- Escalade claire\n\n### SLO/SLA\n- **SLI** : Service Level Indicator (métrique)\n- **SLO** : Service Level Objective (objectif)\n- **SLA** : Service Level Agreement (contrat)",
+        "tags": [
+            "monitoring",
+            "observability",
+            "devops",
+            "best-practices"
+        ],
+        "owner": "diane.rousseau@company.com",
+        "created_at": "2024-12-22T09:00:00Z",
+        "updated_at": "2025-01-14T08:15:00Z"
+    },
+    {
+        "doc_id": "api-versioning",
+        "title": "Stratégies de versioning d'API",
+        "content": "# Stratégies de versioning d'API\n\nLe versioning permet de faire évoluer une API sans casser les clients existants.\n\n## Approches\n\n### 1. URL Versioning\nLa version dans le chemin de l'URL.\n\n```\nGET /api/v1/users\nGET /api/v2/users\n```\n\n**Avantages** :\n- Simple et explicite\n- Facile à router\n- Visible dans les logs\n\n**Inconvénients** :\n- URLs différentes pour même ressource\n- Duplication de code\n\n### 2. Header Versioning\nVersion dans un header HTTP.\n\n```\nGET /api/users\nAccept: application/vnd.company.v2+json\n```\n\n**Avantages** :\n- URLs stables\n- Respect des principes REST\n\n**Inconvénients** :\n- Moins visible\n- Plus complexe à tester\n\n### 3. Query Parameter\n```\nGET /api/users?version=2\n```\n\n**Déconseillé** : mixing concerns\n\n## Bonnes pratiques\n\n### Changements backward-compatible\n- Ajout de nouveaux endpoints\n- Ajout de champs optionnels\n- Ajout de valeurs enum\n\n### Breaking changes nécessitent nouvelle version\n- Suppression de champs\n- Renommage de champs\n- Changement de types\n- Modification de comportement\n\n### Deprecation\n1. Annoncer la deprecation (6 mois avant)\n2. Ajouter header `Deprecation: true`\n3. Logger les utilisations\n4. Contacter les clients actifs\n5. Désactiver après période de grâce\n\n### Maintien\nNe maintenez pas plus de 2-3 versions simultanément.",
+        "tags": [
+            "api",
+            "versioning",
+            "architecture",
+            "best-practices"
+        ],
+        "owner": "alice.martin@company.com",
+        "created_at": "2025-01-07T11:15:00Z",
+        "updated_at": "2025-01-15T10:00:00Z"
+    },
+    {
+        "doc_id": "caching-strategies",
+        "title": "Stratégies de cache pour APIs",
+        "content": "# Stratégies de cache pour APIs\n\nLe caching améliore les performances et réduit la charge sur les backends.\n\n## Niveaux de cache\n\n### 1. Client-side cache\nCache navigateur via headers HTTP.\n\n```\nCache-Control: public, max-age=3600\nETag: \"33a64df551425fcc55e4d42a148795d9f25f89d4\"\n```\n\n### 2. CDN cache\nContenu statique distribué géographiquement.\n\n**Providers** : CloudFlare, Fastly, AWS CloudFront\n\n### 3. API Gateway cache\nCache au niveau de la gateway.\n\n### 4. Application cache\nCache applicatif (Redis, Memcached).\n\n```python\n@cache(ttl=300)  # 5 minutes\ndef get_user(user_id):\n    return db.query(User).get(user_id)\n```\n\n### 5. Database cache\nQuery cache, indexes.\n\n## Stratégies d'invalidation\n\n### Time-based (TTL)\nExpiration après X secondes.\n\n**Bon pour** : données peu critiques\n\n### Event-based\nInvalidation lors de modifications.\n\n```python\ndef update_user(user_id, data):\n    db.update(user_id, data)\n    cache.delete(f\"user:{user_id}\")\n```\n\n### Cache-aside (Lazy loading)\n1. Check cache\n2. Si miss, load from DB\n3. Store in cache\n\n### Write-through\nÉcriture simultanée DB + cache.\n\n### Write-behind\nÉcriture asynchrone en DB.\n\n## Patterns avancés\n\n### Cache stampede prevention\nUn seul process charge les données, les autres attendent.\n\n### Warming\nPré-charger le cache au démarrage.\n\n### Hierarchical caching\nMultiples niveaux de cache avec TTL différents.\n\n## Headers HTTP essentiels\n\n- `Cache-Control`: directives de cache\n- `ETag`: validation de version\n- `Last-Modified`: date de modification\n- `Vary`: cache basé sur headers",
+        "tags": [
+            "api",
+            "caching",
+            "performance",
+            "architecture"
+        ],
+        "owner": "bob.dupont@company.com",
+        "created_at": "2024-12-25T14:20:00Z",
+        "updated_at": "2025-01-12T09:30:00Z"
+    },
+    {
+        "doc_id": "api-documentation",
+        "title": "Documenter une API REST",
+        "content": "# Documenter une API REST\n\nUne bonne documentation est essentielle pour l'adoption d'une API.\n\n## Standards\n\n### OpenAPI (Swagger)\nSpécification standard pour décrire des APIs REST.\n\n```yaml\nopenapi: 3.0.0\ninfo:\n  title: User API\n  version: 1.0.0\npaths:\n  /users:\n    get:\n      summary: Liste des utilisateurs\n      parameters:\n        - name: limit\n          in: query\n          schema:\n            type: integer\n            default: 10\n      responses:\n        '200':\n          description: Success\n          content:\n            application/json:\n              schema:\n                type: array\n                items:\n                  $ref: '#/components/schemas/User'\n```\n\n**Avantages** :\n- Génération automatique de docs interactives\n- Génération de clients\n- Validation automatique\n\n**Outils** : Swagger UI, ReDoc, Stoplight\n\n### API Blueprint\nFormat Markdown pour décrire des APIs.\n\n## Éléments essentiels\n\n### 1. Getting Started\n- Comment obtenir des credentials\n- Premier appel API (Hello World)\n- Concepts de base\n\n### 2. Authentication\n- Types d'auth supportés\n- Comment obtenir un token\n- Refresh token\n\n### 3. Endpoints\nPour chaque endpoint :\n- Description claire\n- Méthode HTTP\n- URL avec paramètres\n- Headers requis\n- Body request (avec exemple)\n- Toutes les réponses possibles (avec exemples)\n- Codes d'erreur\n\n### 4. Examples\nExemples avec curl, différents langages.\n\n```bash\ncurl -X GET 'https://api.example.com/users?limit=10' \\\n  -H 'Authorization: Bearer YOUR_TOKEN'\n```\n\n### 5. Rate Limits\nLimites et headers de rate limiting.\n\n### 6. Errors\nFormat des erreurs, codes possibles.\n\n```json\n{\n  \"error\": {\n    \"code\": \"INVALID_REQUEST\",\n    \"message\": \"Email is required\",\n    \"field\": \"email\"\n  }\n}\n```\n\n### 7. Changelog\nHistorique des versions.\n\n## Bonnes pratiques\n\n1. **Keep it up to date** : doc automatique depuis le code\n2. **Interactivité** : permettre de tester les endpoints\n3. **Exemples réalistes** : cas d'usage concrets\n4. **SDKs** : fournir des clients dans les langages populaires",
+        "tags": [
+            "api",
+            "documentation",
+            "openapi",
+            "swagger"
+        ],
+        "owner": "charlie.bernard@company.com",
+        "created_at": "2025-01-03T13:30:00Z",
+        "updated_at": "2025-01-13T16:20:00Z"
+    },
+    {
+        "doc_id": "websocket-realtime",
+        "title": "WebSockets et communication temps réel",
+        "content": "# WebSockets et communication temps réel\n\nWebSocket permet une communication bidirectionnelle full-duplex entre client et serveur.\n\n## WebSocket vs HTTP\n\n### HTTP (Request-Response)\n- Client initie toujours\n- Overhead par requête (headers)\n- Polling requis pour updates\n\n### WebSocket\n- Connexion persistante\n- Bidirectionnel\n- Latence faible\n- Efficient pour temps réel\n\n## Use cases\n\n- Chat applications\n- Notifications en temps réel\n- Collaborative editing\n- Gaming\n- Financial tickers\n- IoT data streams\n\n## Protocole\n\n### Handshake (HTTP Upgrade)\n```\nGET /chat HTTP/1.1\nHost: example.com\nUpgrade: websocket\nConnection: Upgrade\nSec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==\n```\n\n### Messages\n- **Text frames** : UTF-8\n- **Binary frames** : données binaires\n- **Control frames** : ping/pong, close\n\n## Implémentation\n\n### Server (Python)\n```python\nimport asyncio\nimport websockets\n\nasync def handler(websocket, path):\n    async for message in websocket:\n        # Process message\n        await websocket.send(f\"Echo: {message}\")\n\nstart_server = websockets.serve(handler, \"localhost\", 8765)\nasyncio.get_event_loop().run_until_complete(start_server)\n```\n\n### Client (JavaScript)\n```javascript\nconst ws = new WebSocket('ws://localhost:8765');\n\nws.onopen = () => {\n  ws.send('Hello Server!');\n};\n\nws.onmessage = (event) => {\n  console.log('Received:', event.data);\n};\n```\n\n## Alternatives\n\n### Server-Sent Events (SSE)\nUnidirectionnel serveur → client.\n\n**Avantages** :\n- Plus simple\n- HTTP standard\n- Auto-reconnect\n\n**Use case** : notifications, updates\n\n### Long Polling\nClient poll avec timeout long.\n\n**Inconvénient** : inefficient\n\n## Bonnes pratiques\n\n1. **Heartbeat** : ping/pong pour détecter disconnections\n2. **Reconnection** : stratégie de retry avec backoff\n3. **Authentication** : via token dans URL ou premier message\n4. **Rate limiting** : limiter messages/seconde\n5. **Load balancing** : sticky sessions ou Redis pub/sub",
+        "tags": [
+            "websocket",
+            "realtime",
+            "api",
+            "architecture"
+        ],
+        "owner": "diane.rousseau@company.com",
+        "created_at": "2024-12-30T10:00:00Z",
+        "updated_at": "2025-01-11T14:50:00Z"
+    },
+    {
+        "doc_id": "api-testing",
+        "title": "Tests d'APIs : bonnes pratiques",
+        "content": "# Tests d'APIs : bonnes pratiques\n\nLes tests garantissent que votre API fonctionne comme prévu et évitent les régressions.\n\n## Types de tests\n\n### 1. Tests unitaires\nTestent la logique business isolément.\n\n```python\ndef test_create_user_validates_email():\n    with pytest.raises(ValidationError):\n        create_user(email=\"invalid-email\")\n```\n\n### 2. Tests d'intégration\nTestent les endpoints avec la DB.\n\n```python\ndef test_get_user_endpoint(client, db):\n    user = db.create_user(email=\"test@example.com\")\n    response = client.get(f\"/users/{user.id}\")\n    assert response.status_code == 200\n    assert response.json()[\"email\"] == \"test@example.com\"\n```\n\n### 3. Tests end-to-end\nScénarios complets utilisateur.\n\n### 4. Tests de contrat\nVérifient que l'API respecte son contrat (OpenAPI).\n\n**Outils** : Schemathesis, Dredd\n\n### 5. Tests de charge\nPerformances sous charge.\n\n**Outils** : k6, Locust, JMeter\n\n## Framework de test\n\n### Python\n- pytest + httpx/requests\n- FastAPI TestClient\n\n### JavaScript\n- Jest + supertest\n- Vitest\n\n### Postman/Newman\nTests automatisés depuis collections Postman.\n\n## Bonnes pratiques\n\n### Setup/Teardown\nBase de données de test nettoyée entre tests.\n\n```python\n@pytest.fixture(autouse=True)\ndef reset_db():\n    db.drop_all()\n    db.create_all()\n    yield\n    db.drop_all()\n```\n\n### Fixtures\nDonnées de test réutilisables.\n\n### Test de tous les cas\n- Happy path\n- Edge cases\n- Error cases (400, 401, 403, 404, 500)\n- Validation errors\n\n### Assertions complètes\n```python\nresponse = client.post(\"/users\", json={\"email\": \"test@example.com\"})\nassert response.status_code == 201\nassert \"id\" in response.json()\nassert response.json()[\"email\"] == \"test@example.com\"\nassert \"password\" not in response.json()  # Never expose password\n```\n\n### Tests de performance\nVérifier les SLOs (latence < 200ms).\n\n### Mock services externes\nIsoler les tests des dépendances externes.\n\n```python\n@patch('external_api.call')\ndef test_with_external_api(mock_call):\n    mock_call.return_value = {\"status\": \"success\"}\n    # Test logic\n```\n\n## CI/CD Integration\n\n```yaml\ntest:\n  script:\n    - pytest tests/ --cov=api --cov-report=xml\n    - schemathesis run openapi.yaml --base-url=http://localhost:8000\n```",
+        "tags": [
+            "api",
+            "testing",
+            "quality",
+            "ci-cd"
+        ],
+        "owner": "alice.martin@company.com",
+        "created_at": "2025-01-04T09:45:00Z",
+        "updated_at": "2025-01-14T12:10:00Z"
+    },
+    {
+        "doc_id": "api-pagination",
+        "title": "Pagination dans les APIs REST",
+        "content": "# Pagination dans les APIs REST\n\nLa pagination est essentielle pour les endpoints retournant de grandes listes.\n\n## Approches\n\n### 1. Offset-based (Page number)\nUtilise page et limit.\n\n```\nGET /users?page=2&limit=20\n```\n\n**Response** :\n```json\n{\n  \"data\": [...],\n  \"pagination\": {\n    \"page\": 2,\n    \"limit\": 20,\n    \"total\": 150,\n    \"total_pages\": 8\n  }\n}\n```\n\n**Avantages** :\n- Simple à implémenter\n- Navigation directe vers une page\n\n**Inconvénients** :\n- Performance dégradée sur grandes tables\n- Résultats instables si insertions/suppressions\n\n### 2. Cursor-based\nUtilise un pointeur opaque.\n\n```\nGET /users?cursor=eyJpZCI6MTAwfQ&limit=20\n```\n\n**Response** :\n```json\n{\n  \"data\": [...],\n  \"pagination\": {\n    \"next_cursor\": \"eyJpZCI6MTIwfQ\",\n    \"prev_cursor\": \"eyJpZCI6ODAfQ\",\n    \"has_more\": true\n  }\n}\n```\n\n**Avantages** :\n- Performance constante\n- Résultats stables\n- Optimal pour infinite scroll\n\n**Inconvénients** :\n- Pas de navigation directe\n- Plus complexe\n\n### 3. Keyset pagination\nUtilise la dernière valeur vue.\n\n```\nGET /users?after_id=100&limit=20\n```\n\n**Query** :\n```sql\nSELECT * FROM users \nWHERE id > 100 \nORDER BY id \nLIMIT 20\n```\n\n**Avantages** :\n- Très performant\n- Simple avec index\n\n## Headers HTTP\n\nInformations de pagination dans headers.\n\n```\nLink: <https://api.example.com/users?page=3>; rel=\"next\",\n      <https://api.example.com/users?page=1>; rel=\"prev\",\n      <https://api.example.com/users?page=8>; rel=\"last\"\nX-Total-Count: 150\n```\n\n## Bonnes pratiques\n\n1. **Limit max** : plafonner à 100-200 items\n2. **Default limit** : 20-50\n3. **Total count** : optionnel (coûteux en perf)\n4. **Sorting** : permettre tri custom\n\n```\nGET /users?sort=-created_at,name&limit=20\n```\n\n5. **Filtering + Pagination** : compatibles\n\n```\nGET /users?status=active&role=admin&page=2\n```",
+        "tags": [
+            "api",
+            "pagination",
+            "best-practices",
+            "performance"
+        ],
+        "owner": "bob.dupont@company.com",
+        "created_at": "2024-12-27T11:30:00Z",
+        "updated_at": "2025-01-10T08:45:00Z"
+    }
+]

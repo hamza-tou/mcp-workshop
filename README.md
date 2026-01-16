@@ -121,8 +121,72 @@ Les exercices sont **indépendants** :
 
 ## 🚀 Démarrage rapide
 
-1. Installer le projet (`python/README.md` ou `java/README.md`)
-2. Démarrer l’API DataHub locale
-3. Lire attentivement chaque user story dans `stories/`
-4. Implémenter la solution demandée
-5. Vérifier les **VALIDATION CRITERIA** avant de passer à la suivante
+### Installation
+
+1. **Installer uv** (gestionnaire de dépendances Python) :
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. **Installer les dépendances** :
+   ```bash
+   cd python/
+   uv sync
+   ```
+
+### Lancer l'API DataHub
+
+```bash
+cd python/
+uv run uvicorn datahub_api.main:app --reload --port 8000
+```
+
+L'API sera disponible sur `http://localhost:8000`. Documentation interactive : http://localhost:8000/docs
+
+### Lancer un serveur MCP
+
+Dans un autre terminal :
+
+```bash
+# Serveur de référence (complet)
+uv run fastmcp dev python/mcp/reference_server/server.py
+
+# Ou vos exercices
+uv run fastmcp dev python/mcp/exercises/exo1/server.py
+```
+
+### Suivre les exercices
+
+1. Lisez chaque User Story (US 1 à US 5)
+2. Suivez les instructions dans `python/mcp/exercises/exoX/README.md`
+3. Testez avec GitHub Copilot
+4. Vérifiez les critères de validation
+
+---
+
+## 📁 Structure du projet
+
+```
+td-mcp/
+├── README.md                # Ce fichier
+├── US 1 à US 5.md          # User Stories
+└── python/                  # Implémentation Python
+    ├── README.md            # Guide détaillé
+    ├── pyproject.toml       # Configuration uv
+    ├── datahub_api/         # API DataHub (FastAPI)
+    │   ├── main.py          # 8 endpoints REST
+    │   ├── models.py        # Modèles Pydantic
+    │   └── data/            # Données de test (JSON)
+    └── mcp/                 # Serveurs MCP
+        ├── reference_server/   # Serveur complet
+        └── exercises/          # Exercices exo1-5
+```
+
+---
+
+## 📚 Ressources
+
+- [Guide Python](python/README.md)
+- [Documentation API](python/datahub_api/README.md)
+- [FastMCP](https://github.com/jlowin/fastmcp)
+- [MCP](https://modelcontextprotocol.io/)
