@@ -40,7 +40,7 @@ def hello_server() -> str:
 
 # Point d'entrée
 if __name__ == "__main__":
-    mcp.run(transport="sse", port=8001, path="/mcp")
+    mcp.run(transport="http", port=8001, path="/mcp")
 ```
 
 ### Démarrage

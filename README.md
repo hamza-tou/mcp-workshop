@@ -167,7 +167,7 @@ uv run fastmcp dev python/mcp/exercises/exo1/server.py
 ## 📁 Structure du projet
 
 ```
-td-mcp/
+mcp-workshop/
 ├── README.md                # Ce fichier
 ├── US 1 à US 5.md          # User Stories
 └── python/                  # Implémentation Python
