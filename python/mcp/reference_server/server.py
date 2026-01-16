@@ -15,6 +15,12 @@ API_BASE_URL = "http://localhost:8000"
 
 
 @mcp.tool()
+def hello_server() -> str:
+    """Tool de test simple qui retourne un message de bienvenue."""
+    return "Hello mcp server here !"
+
+
+@mcp.tool()
 async def search_datahub(query: str, scope: str = "docs", limit: int = 10) -> str:
     """
     Recherche dans DataHub.

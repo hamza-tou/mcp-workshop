@@ -76,14 +76,6 @@ Pour chaque mission :
 2. Observez quels tools/resources sont utilisés
 3. Vérifiez que le résultat est correct
 
-**Exemples de prompts** :
-- Mission 1 : "Trouve tous les documents DataHub qui parlent d'APIs"
-- Mission 2 : "Cherche des documents sur GraphQL"
-- Mission 3 : "Qui est le propriétaire du document sur les microservices patterns ?"
-- Mission 4 : "Montre-moi le document sur Kubernetes et résume les concepts clés"
-- Mission 5 : "Liste les snippets de configuration disponibles"
-- Mission 6 : "Compare REST et GraphQL selon les docs DataHub"
-
 ### Observation
 
 Pour chaque mission, notez :

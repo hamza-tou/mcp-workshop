@@ -54,11 +54,7 @@ uv run python -m mcp.server
 
 Vous devriez voir quelque chose comme :
 ```
-Starting MCP server...
-Server: DataHub MCP Server
-Tools: 1 (hello_server)
-Resources: 0
-Running on http://localhost:8001/mcp
+Starting MCP server 'DataHub MCP Server' with transport 'http' on ...
 ```
 
 ### Tester le tool
