@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
 Depuis le répertoire `python/` :
 ```bash
-uv run python -m mcp.server
+uv run python <chemin_du_server>
 ```
 
 ### Logs attendus
@@ -66,6 +66,17 @@ Une fois le serveur lancé et connecté à Copilot :
 ```
 
 Vous devriez recevoir : `Hello mcp server here !`
+
+### Arrêter le serveur
+
+Pour arrêter le serveur MCP depuis VS Code :
+
+1. Ouvrir la palette de commandes (`Cmd+Shift+P` sur Mac)
+2. Chercher et sélectionner : **MCP: List Servers**
+3. Choisir le serveur à arrêter dans la liste
+4. Cliquer sur le bouton **Stop** ou sélectionner l'option d'arrêt
+
+Alternativement, vous pouvez aussi arrêter le processus directement dans le terminal avec `Ctrl+C`.
 
 ---
 
