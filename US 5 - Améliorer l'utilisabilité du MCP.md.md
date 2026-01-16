@@ -36,16 +36,17 @@ Améliorer l'utilisabilité MCP en modifiant uniquement :
    uv run fastapi dev datahub_api/main.py --port 8000
    \`\`\`
 
-2. **Serveur MCP exo5 lancé** :
+2. **Serveur MCP lancé** :
    \`\`\`bash
-   uv run fastmcp dev python/mcp/exercises/exo5/server.py
+   cd python/
+   uv run python -m mcp.server
    \`\`\`
 
-3. **GitHub Copilot configuré** pour utiliser ce serveur
+3. **GitHub Copilot configuré** pour utiliser ce serveur (`http://localhost:8001/mcp`)
 
 ### Identification des problèmes
 
-Le serveur `exo5/server.py` contient **intentionnellement** des descriptions MCP imprécises.
+Pour cet exercice, nous allons améliorer les descriptions des tools et resources dans `python/mcp/server.py` en identifiant les zones marquées avec des commentaires `# TODO: Améliorer cette description`.
 
 #### Problème 1 : Paramètre `scope` trop vague
 **Symptôme** : Le LLM utilise parfois le tool avec `scope="all"` ou `scope="everything"` qui n'existent pas.
@@ -77,15 +78,14 @@ Le serveur `exo5/server.py` contient **intentionnellement** des descriptions MCP
 
 ### Processus d'amélioration
 
-1. **Ouvrir** `python/mcp/exercises/exo5/server.py`
-2. **Identifier** les 4 descriptions marquées avec `# TODO: Améliorer cette description`
-3. **Améliorer** les descriptions en :
-   - Listant les valeurs possibles pour les enums
-   - Donnant des exemples concrets de `doc_id`
+1. **Ouvrir** `python/mcp/server.py`
+2. **Améliorer** les descriptions en :
+   - Listant les valeurs possibles pour les enums (ex: `scope` doit être "docs" ou "snippets")
+   - Donnant des exemples concrets de `doc_id` (ex: "kubernetes-deployment", "rest-api-design")
    - Précisant les recommandations (ex: limit entre 5 et 20)
-   - Clarifiant les cas d'usage (search vs resource)
-4. **Relancer** le serveur MCP
-5. **Tester** avec les mêmes prompts qu'avant
+   - Clarifiant les cas d'usage (search pour découvrir vs resource pour lire un document connu)
+3. **Relancer** le serveur MCP (arrêter puis redémarrer)
+4. **Tester** avec les mêmes prompts qu'avant dans Copilot Chat
 
 ### Exemples de prompts à tester
 
@@ -109,15 +109,16 @@ Comparez avant/après :
 
 ## RESSOURCES
 
-- [README exercice 5](python/mcp/exercises/exo5/README.md) - Guide détaillé des 4 problèmes
-- [Serveur exo5](python/mcp/exercises/exo5/server.py) - Code avec descriptions à améliorer
+- [Guide MCP](python/mcp/README.md) - Comment tester avec Copilot
+- [Serveur de travail](python/mcp/server.py) - Code avec descriptions à améliorer
 - [Serveur de référence](python/mcp/reference_server/server.py) - Exemple de bonnes descriptions
+- [Documentation FastMCP](https://github.com/jlowin/fastmcp)
 
 ---
 
 ## VALIDATION CRITERIA
 
-- Les 4 descriptions ont été améliorées avec des informations concrètes
+- Les descriptions des tools et resources ont été améliorées avec des informations concrètes
 - Les tests montrent une meilleure précision du LLM (moins d'erreurs de paramètres)
 - Les prompts ambigus sont mieux interprétés
 - La documentation MCP est plus exploitable par le LLM
