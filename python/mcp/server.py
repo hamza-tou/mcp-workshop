@@ -16,7 +16,8 @@ API_BASE_URL = "http://localhost:8000"
 # @mcp.tool()
 # def hello_server() -> str:
 #     """Tool de test simple qui retourne un message de bienvenue."""
-#     return "Hello mcp server here !"
+#     return
+
 
 # US2 - Tool de recherche DataHub
 # TODO: Implémenter après US1
@@ -37,5 +38,4 @@ API_BASE_URL = "http://localhost:8000"
 
 if __name__ == "__main__":
     # TODO: Lancer le serveur avec les bons paramètres
-    # mcp.run(transport="sse", port=8001, path="/mcp")
     pass
