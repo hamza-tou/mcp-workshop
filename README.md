@@ -116,6 +116,7 @@ Les exercices sont **indépendants** :
 - **US3** : Exposer un document interne comme resource MCP
 - **US4** : Résoudre plusieurs tâches métier via MCP
 - **US5** : Améliorer l’utilisabilité MCP (descriptions et schémas)
+- **US6** : Sécurité et limites du MCP (descriptions et schémas)
 
 ---
 

@@ -28,7 +28,7 @@ Créer un tool MCP qui encapsule :
 L'API DataHub doit être lancée :
 ```bash
 cd python/
-uv run uvicorn datahub_api.main:app --reload --port 8000
+uv run fastapi dev datahub_api/main.py --port 8000
 ```
 
 ### Création du tool

@@ -176,9 +176,3 @@ async def list_tags():
 async def list_owners():
     """Lister tous les propriétaires de documents."""
     return sorted(OWNERS)
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8000)

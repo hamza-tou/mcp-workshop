@@ -179,7 +179,7 @@ def sanitize_content(content: str) -> str:
 1. **API DataHub lancée** :
    ```bash
    cd python/
-   uv run uvicorn datahub_api.main:app --reload --port 8000
+   uv run fastapi dev datahub_api/main.py --port 8000
    ```
 
 2. **Travailler dans le serveur existant** : `python/mcp/server.py`
