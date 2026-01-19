@@ -55,16 +55,16 @@ Accomplir 6 missions d'exploration via GitHub Copilot en utilisant uniquement le
 1. **API DataHub lancée** :
    ```bash
    cd python/
-   uv run fastapi dev datahub_api/main.py --port 8000
+   uv run uvicorn datahub_api.main:app --reload --port 8000
    ```
 
 2. **Serveur MCP lancé** (au choix) :
    ```bash
    # Serveur de référence
-   uv run fastmcp dev python/mcp/reference_server/server.py
+   uv run python python/mcp/reference_server/server.py
    
-   # OU vos implémentations (si exercices 2-3 complétés)
-   uv run fastmcp dev python/mcp/exercises/exo2/server.py
+   # OU votre implémentation (si exercices 2-3 complétés)
+   uv run python python/mcp/server.py
    ```
 
 3. **GitHub Copilot configuré** pour utiliser votre serveur MCP
@@ -93,7 +93,6 @@ Listez les problèmes d'utilisabilité pour l'exercice 5 :
 
 ## RESSOURCES
 
-- [README exercice 4](python/mcp/exercises/exo4/README.md) - Instructions détaillées
 - [Serveur de référence](python/mcp/reference_server/server.py) - Tous les tools et resources
 - [Données API](python/datahub_api/data/) - Documents et snippets disponibles
 
@@ -101,6 +100,6 @@ Listez les problèmes d'utilisabilité pour l'exercice 5 :
 
 ## VALIDATION CRITERIA
 
-- Les 3 tâches sont résolues via MCP
+- Les 6 missions sont résolues via MCP
 - L’assistant utilise effectivement tools et resources
 - Les réponses sont cohérentes avec les données DataHub

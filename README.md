@@ -148,19 +148,20 @@ L'API sera disponible sur `http://localhost:8000`. Documentation interactive : h
 Dans un autre terminal :
 
 ```bash
-# Serveur de référence (complet)
-uv run fastmcp dev python/mcp/reference_server/server.py
+# Votre serveur (à compléter selon les exercices)
+uv run python python/mcp/server.py
 
-# Ou vos exercices
-uv run fastmcp dev python/mcp/exercises/exo1/server.py
+# Ou le serveur de référence (solution complète)
+uv run python python/mcp/reference_server/server.py
 ```
 
 ### Suivre les exercices
 
-1. Lisez chaque User Story (US 1 à US 5)
-2. Suivez les instructions dans `python/mcp/exercises/exoX/README.md`
-3. Testez avec GitHub Copilot
-4. Vérifiez les critères de validation
+1. Lisez chaque User Story (US 1 à US 6)
+2. Modifiez progressivement `python/mcp/server.py` selon les instructions
+3. Consultez `python/mcp/reference_server/server.py` en cas de blocage
+4. Testez avec GitHub Copilot
+5. Vérifiez les critères de validation
 
 ---
 
@@ -169,7 +170,7 @@ uv run fastmcp dev python/mcp/exercises/exo1/server.py
 ```
 mcp-workshop/
 ├── README.md                # Ce fichier
-├── US 1 à US 5.md          # User Stories
+├── US 1 à US 6.md          # User Stories
 └── python/                  # Implémentation Python
     ├── README.md            # Guide détaillé
     ├── pyproject.toml       # Configuration uv
@@ -178,8 +179,8 @@ mcp-workshop/
     │   ├── models.py        # Modèles Pydantic
     │   └── data/            # Données de test (JSON)
     └── mcp/                 # Serveurs MCP
-        ├── reference_server/   # Serveur complet
-        └── exercises/          # Exercices exo1-5
+        ├── server.py        # Serveur à compléter (exercices)
+        └── reference_server/   # Serveur complet (solution)
 ```
 
 ---

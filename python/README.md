@@ -57,7 +57,8 @@ python/
 L'API DataHub doit tourner en permanence pour que les serveurs MCP puissent l'interroger :
 
 ```bash
-uv run fastapi dev datahub_api/main.py --port 8000
+cd python/
+uv run uvicorn datahub_api.main:app --reload --port 8000
 ```
 
 L'API sera disponible sur `http://localhost:8000`
@@ -76,13 +77,13 @@ Dans un autre terminal, lancez le serveur MCP de votre choix :
 
 ```bash
 # Votre serveur (à compléter selon les exercices)
-uv run fastmcp dev mcp/server.py --port 8001 --path /mcp
+uv run python python/mcp/server.py
 
 # Ou le serveur de référence (solution complète)
-uv run fastmcp dev mcp/reference_server/server.py --port 8001 --path /mcp
+uv run python python/mcp/reference_server/server.py
 ```
 
-Le serveur MCP sera disponible sur `http://localhost:8001/mcp`
+Le serveur MCP sera disponible sur `http://localhost:8001`
 
 ## Tester avec GitHub Copilot
 
@@ -94,7 +95,7 @@ Consultez le fichier [mcp/README.md](mcp/README.md) pour des instructions détai
 **Résumé rapide** :
 1. Dans VS Code : `Cmd+Shift+P` → **MCP: Add Server**
 2. Choisir **HTTP**
-3. Entrer l'adresse : `http://localhost:8001/mcp`
+3. Entrer l'adresse : `http://localhost:8001`
 4. Dans Copilot Chat, utiliser `#` pour appeler tools et resources
 
 ## Dépannage
@@ -104,7 +105,7 @@ Consultez le fichier [mcp/README.md](mcp/README.md) pour des instructions détai
 Si le port 8000 est déjà occupé :
 
 ```bash
-uv run fastapi dev datahub_api/main.py --port 8001
+uv run uvicorn datahub_api.main:app --reload --port 8002
 ```
 
 N'oubliez pas de mettre à jour l'URL de l'API dans vos serveurs MCP.

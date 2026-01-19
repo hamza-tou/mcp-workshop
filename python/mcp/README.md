@@ -7,11 +7,11 @@
 
 ## Lancer le serveur
 
-Le serveur MCP doit être lancé sur `localhost:8001/mcp` :
+Le serveur MCP doit être lancé sur `localhost:8001` :
 
 ```bash
 # Avec votre serveur (à compléter)
- uv run python <chemin_du_fichier>
+uv run python python/mcp/server.py
 
 # Ou avec le serveur de référence (solution complète)
 uv run python python/mcp/reference_server/server.py
@@ -24,7 +24,7 @@ uv run python python/mcp/reference_server/server.py
 1. Dans VS Code, ouvrir la palette de commandes (Cmd+Shift+P sur Mac)
 2. Chercher et sélectionner : **MCP: Add Server**
 3. Choisir le type : **HTTP**
-4. Entrer l'adresse : `http://localhost:8001/mcp`
+4. Entrer l'adresse : `http://localhost:8001`
 
 ### 2. Utiliser les tools et resources MCP
 
@@ -42,19 +42,10 @@ Dans GitHub Copilot Chat, vous pouvez appeler les tools et resources avec le sym
 #### Exemples avec les resources :
 ```
 # Accéder à un document spécifique
-#datahub://document/DOC001
+#datahub://docs/rest-api-design
 
 # Accéder à un snippet
-#datahub://snippet/SNIP001
-```
-
-#### Exemples avec les prompts :
-```
-# Utiliser un prompt pour analyser un document
-#analyze_document doc_id="DOC001"
-
-# Comparer des documents
-#compare_documents doc_ids="DOC001,DOC002"
+#datahub://snippets/graphql-query-example
 ```
 
 ## Vérifier que le serveur fonctionne
@@ -63,16 +54,17 @@ Pour vérifier que votre serveur MCP est correctement lancé :
 
 ```bash
 # Le serveur doit être accessible à cette adresse
-curl http://localhost:8001/mcp
+curl http://localhost:8001
 
 # Vous devriez voir une réponse JSON avec les informations du serveur
 ```
 
 ## Progression des exercices
 
-Référez-vous aux User Stories (US 1 à US 5) pour implémenter progressivement :
+Référez-vous aux User Stories (US 1 à US 6) pour implémenter progressivement :
 - US 1 : Serveur MCP minimal
 - US 2 : Tool de recherche (`search_datahub`)
 - US 3 : Resources pour accéder aux documents
 - US 4 : Exploration complète (tags, snippets)
-- US 5 : Prompts et améliorations UX
+- US 5 : Améliorations UX (descriptions et schémas)
+- US 6 : Sécurité et limites du MCP

@@ -31,22 +31,21 @@ Améliorer l'utilisabilité MCP en modifiant uniquement :
 ### Prérequis
 
 1. **API DataHub lancée** :
-   \`\`\`bash
+   ```bash
    cd python/
-   uv run fastapi dev datahub_api/main.py --port 8000
-   \`\`\`
+   uv run uvicorn datahub_api.main:app --reload --port 8000
+   ```
 
 2. **Serveur MCP lancé** :
-   \`\`\`bash
-   cd python/
-   uv run python -m mcp.server
-   \`\`\`
+   ```bash
+   uv run python python/mcp/server.py
+   ```
 
-3. **GitHub Copilot configuré** pour utiliser ce serveur (`http://localhost:8001/mcp`)
+3. **GitHub Copilot configuré** pour utiliser ce serveur (`http://localhost:8001`)
 
 ### Identification des problèmes
 
-Pour cet exercice, nous allons améliorer les descriptions des tools et resources dans `python/mcp/server.py` en identifiant les zones marquées avec des commentaires `# TODO: Améliorer cette description`.
+Pour cet exercice, nous allons améliorer les descriptions des tools et resources dans `python/mcp/server.py`. Vous pouvez consulter `python/mcp/reference_server/server.py` pour voir des exemples de bonnes descriptions.
 
 #### Problème 1 : Paramètre `scope` trop vague
 **Symptôme** : Le LLM utilise parfois le tool avec `scope="all"` ou `scope="everything"` qui n'existent pas.

@@ -25,6 +25,9 @@ Créer un serveur MCP minimal capable de :
 
 Travaille dans `python/mcp/server.py`.
 
+<details>
+<summary>💡 Voir la solution</summary>
+
 **Structure minimale avec FastMCP** :
 ```python
 from fastmcp import FastMCP
@@ -40,14 +43,16 @@ def hello_server() -> str:
 
 # Point d'entrée
 if __name__ == "__main__":
-    mcp.run(transport="http", port=8001, path="/mcp")
+    mcp.run(transport="http", port=8001, host="localhost")
 ```
+
+</details>
 
 ### Démarrage
 
 Depuis le répertoire `python/` :
 ```bash
-uv run python <chemin_du_server>
+uv run python python/mcp/server.py
 ```
 
 ### Logs attendus
@@ -91,7 +96,7 @@ Alternativement, vous pouvez aussi arrêter le processus directement dans le ter
 
 ## VALIDATION CRITERIA
 
-- Le serveur MCP démarre sans erreur sur `http://localhost:8001/mcp`
+- Le serveur MCP démarre sans erreur sur `http://localhost:8001`
 - Les logs indiquent que le serveur est prêt avec 1 tool
 - Le tool `hello_server` est accessible et retourne le message attendu
 - Le serveur peut être connecté à GitHub Copilot via HTTP

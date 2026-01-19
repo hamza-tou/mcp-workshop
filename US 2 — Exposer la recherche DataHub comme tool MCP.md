@@ -28,12 +28,15 @@ Créer un tool MCP qui encapsule :
 L'API DataHub doit être lancée :
 ```bash
 cd python/
-uv run fastapi dev datahub_api/main.py --port 8000
+uv run uvicorn datahub_api.main:app --reload --port 8000
 ```
 
 ### Création du tool
 
-Travaille dans `python/mcp/exercises/exo2/server.py`.
+Travaille dans `python/mcp/server.py`.
+
+<details>
+<summary>💡 Voir la solution</summary>
 
 **Structure d'un tool avec FastMCP** :
 ```python
@@ -79,10 +82,12 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
+</details>
+
 ### Lancement
 
 ```bash
-uv run fastmcp dev python/mcp/exercises/exo2/server.py
+uv run python python/mcp/server.py
 ```
 
 Vérifiez que les logs affichent **"Tools: 1"**.
@@ -100,7 +105,6 @@ Configurez ce serveur MCP dans VS Code et testez :
 
 - [API DataHub](python/datahub_api/README.md) - Tous les endpoints documentés
 - [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation du tool search_datahub
-- [README exercice 2](python/mcp/exercises/exo2/README.md) - Instructions détaillées
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
 
 ---

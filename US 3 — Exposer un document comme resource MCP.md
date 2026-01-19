@@ -27,12 +27,15 @@ Créer une resource MCP exposant :
 L'API DataHub doit être lancée :
 ```bash
 cd python/
-uv run fastapi dev datahub_api/main.py --port 8000
+uv run uvicorn datahub_api.main:app --reload --port 8000
 ```
 
 ### Création de la resource
 
-Travaille dans `python/mcp/exercises/exo3/server.py`.
+Travaille dans `python/mcp/server.py`.
+
+<details>
+<summary>💡 Voir la solution</summary>
 
 **Structure d'une resource avec FastMCP** :
 ```python
@@ -76,6 +79,8 @@ if __name__ == "__main__":
     mcp.run()
 ```
 
+</details>
+
 ### Documents disponibles
 
 Quelques `doc_id` à tester :
@@ -90,7 +95,7 @@ Liste complète : `curl http://localhost:8000/docs`
 ### Lancement
 
 ```bash
-uv run fastmcp dev python/mcp/exercises/exo3/server.py
+uv run python python/mcp/server.py
 ```
 
 Vérifiez que les logs affichent **"Resources: 1"**.
@@ -108,7 +113,6 @@ Testez :
 
 - [API DataHub](python/datahub_api/README.md) - Liste des documents disponibles
 - [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation de la resource get_document
-- [README exercice 3](python/mcp/exercises/exo3/README.md) - Instructions détaillées
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
 
 ---
