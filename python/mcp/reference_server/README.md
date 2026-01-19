@@ -56,5 +56,5 @@ Tous les tools retournent du texte formaté lisible par un humain et un LLM.
 L'API DataHub doit être lancée sur `http://localhost:8000` :
 
 ```bash
-uv run uvicorn datahub_api.main:app --reload --port 8000
+uv run fastapi dev datahub_api/main.app --port 8000
 ```
