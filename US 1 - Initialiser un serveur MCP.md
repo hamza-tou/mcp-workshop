@@ -20,6 +20,7 @@ Créer un serveur MCP minimal capable de :
 - afficher des logs de démarrage
 - exposer un tool simple `hello_server` pour tester la communication
 
+## HOW
 
 ### Création du serveur
 
