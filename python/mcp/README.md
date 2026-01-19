@@ -24,7 +24,7 @@ uv run python python/mcp/reference_server/server.py
 1. Dans VS Code, ouvrir la palette de commandes (Cmd+Shift+P sur Mac)
 2. Chercher et sélectionner : **MCP: Add Server**
 3. Choisir le type : **HTTP**
-4. Entrer l'adresse : `http://localhost:8001`
+4. Entrer l'adresse : `http://localhost:8001/mcp`
 
 ### 2. Utiliser les tools et resources MCP
 
