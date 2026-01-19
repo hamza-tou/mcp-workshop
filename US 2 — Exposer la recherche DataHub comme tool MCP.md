@@ -77,9 +77,6 @@ async def search_datahub(
             
         except httpx.HTTPError as e:
             return f"Erreur: {str(e)}"
-
-if __name__ == "__main__":
-    mcp.run()
 ```
 
 </details>
@@ -89,8 +86,6 @@ if __name__ == "__main__":
 ```bash
 uv run python python/mcp/server.py
 ```
-
-Vérifiez que les logs affichent **"Tools: 1"**.
 
 ### Test avec GitHub Copilot
 

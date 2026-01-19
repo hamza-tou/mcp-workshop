@@ -25,6 +25,8 @@ uv run python python/mcp/reference_server/server.py
 2. Chercher et sélectionner : **MCP: Add Server**
 3. Choisir le type : **HTTP**
 4. Entrer l'adresse : `http://localhost:8001/mcp`
+5. Pour restart le server (après modification):
+    **MCP : List Server** -> Choisir son serveur -> **Restart Server**
 
 ### 2. Utiliser les tools et resources MCP
 

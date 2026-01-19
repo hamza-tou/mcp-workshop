@@ -95,7 +95,7 @@ Consultez le fichier [mcp/README.md](mcp/README.md) pour des instructions détai
 **Résumé rapide** :
 1. Dans VS Code : `Cmd+Shift+P` → **MCP: Add Server**
 2. Choisir **HTTP**
-3. Entrer l'adresse : `http://localhost:8001`
+3. Entrer l'adresse : `http://localhost:8001/mcp`
 4. Dans Copilot Chat, utiliser `#` pour appeler tools et resources
 
 ## Dépannage

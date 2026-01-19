@@ -98,13 +98,11 @@ Liste complète : `curl http://localhost:8000/docs`
 uv run python python/mcp/server.py
 ```
 
-Vérifiez que les logs affichent **"Resources: 1"**.
 
 ### Test avec GitHub Copilot
 
 Testez :
-- #get_document
-- "Montre-moi le document rest-api-design"
+- "#nom-du-serveur-mcp Montre moi le document "rest-api-design"
 - "Lis le guide sur Kubernetes (doc ID: kubernetes-deployment)"
 
 ---
