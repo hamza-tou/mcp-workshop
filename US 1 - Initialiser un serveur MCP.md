@@ -65,7 +65,7 @@ Starting MCP server 'DataHub MCP Server' with transport 'http' on ...
 
 ### Tester le tool
 
-Une fois le serveur lancé et connecté à Copilot :
+Une fois le serveur lancé et connecté à Copilot (voir [Guide pour connecter le serveur à GitHub Copilot](python/mcp/README.md)) :
 ```
 # Dans Copilot Chat
 #hello_server
