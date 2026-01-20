@@ -6,7 +6,7 @@ Ce repository est un support de workshop pour apprendre à **mettre en place un 
 
 ## 🎯 Objectif
 
-Mettre en place un **serveur MCP local** permettant d’exposer certaines capacités de l’API DataHub sous forme de :
+L’objectif est de comprendre comment MCP agit comme une **façade sémantique** au-dessus d’une API existante, sans refonte de celle-ci.
 
 - **Tools MCP** (actions métier appelables)
 - **Resources MCP** (données internes consultables)
