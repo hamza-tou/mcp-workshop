@@ -14,7 +14,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 From the `datahub_api/` directory, launch the API:
 ```bash
-uv run fastapi main.py --port 8000
+uv run fastapi run main.py --port 8000
 ```
 
 This command starts the server, you can check it with:
