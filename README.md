@@ -106,7 +106,7 @@ L’API DataHub existante fournit les endpoints suivants :
 ---
 
 
-## 📁 Structure du projet
+## 📁 Structure du projet: TODO regenerate
 
 ```
 mcp-workshop/

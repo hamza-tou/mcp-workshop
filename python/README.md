@@ -7,14 +7,12 @@ Ce guide vous accompagne dans la mise en place et l'utilisation de l'environneme
 
 ```
 python/
-├── pyproject.toml              # Configuration uv et dépendances
-├── README.md                   # Ce fichier
-└── datahub_mcp/               # Serveurs MCP
-    ├── README.md              # Guide pour tester avec Copilot
-    ├── hello_tool.py          # Fake MCP server
-    ├── server.py              # Serveur MCP à compléter (exercices)
-    └── reference_server/      # Implémentation de référence complète
-        └── server.py          # Solution complète (si bloqué)
+├── pyproject.toml         # Configuration uv et dépendances
+├── README.md              # Ce fichier
+├── hello_tool.py          # Fake MCP server
+├── server.py              # Serveur MCP à compléter (exercices)
+└── reference_server/      # Implémentation de référence complète
+    └── server.py          # Solution complète (si bloqué)
 ```
 
 ## Prérequis
@@ -46,7 +44,7 @@ uv sync
 
 Tester votre installation avec : 
 ```bash
-uv run python datahub_mcp/hello_tool.py
+uv run python hello_tool.py
 ```
 
 Cette commande doit démarrer un serveur MCP (en mode HTTP) sur http://localhost:8001/mcp. Logs attendus:
