@@ -9,7 +9,7 @@ spring:
         annotation-scanner:
           enabled: true
         streamable-http:
-          mcp-endpoint: /
+          mcp-endpoint: /mcp
 
 server:
   port: 8001

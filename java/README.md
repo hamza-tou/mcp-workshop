@@ -1,49 +1,49 @@
-# DataHub MCP Server
+# Workshop MCP - Guide Java
 
-## Project Structure
+Ce guide vous accompagne dans la mise en place et l'utilisation de l'environnement Java pour le workshop MCP.
 
-The project is organized into the following directories:
+## Structure du projet
+
+Le projet est organisé selon les répertoires suivants :
 ```
 src/main/java/com/datahub/
-└── DataHubMCPApplication.java    # Spring Boot application entry point
+└── DataHubMCPApplication.java    # Point d'entrée de l'application Spring Boot
 
 src/main/resources/
-├── application.properties      # Application configuration
-└── application.yml             # Alternative YAML configuration
+├── application.properties      # Configuration de l'application
+└── application.yml             # Configuration YAML alternative
 
-pom.xml                         # Maven dependencies and project configuration
+pom.xml                         # Dépendances Maven et configuration du projet
 ```
 
 
-## Prerequisites
+## Prérequis
 
-Before running this project, ensure you have the following installed:
+Avant d'exécuter ce projet, assurez-vous d'avoir installé les éléments suivants :
 
-- **JDK 17**: [Download JDK 17](https://www.oracle.com/java/technologies/downloads/#java17) or use [OpenJDK 17](https://jdk.java.net/17/)
-- **Maven 3.6+**: [Download Maven](https://maven.apache.org/download.cgi) and follow the [installation guide](https://maven.apache.org/install.html)
+- **JDK 17** : [Télécharger JDK 17](https://www.oracle.com/java/technologies/downloads/#java17) ou utiliser [OpenJDK 17](https://jdk.java.net/17/)
+- **Maven 3.6+** : [Télécharger Maven](https://maven.apache.org/download.cgi) et suivre le [guide d'installation](https://maven.apache.org/install.html)
 
-Verify your installations:
+Vérifiez vos installations :
 ```bash
-java -version  # Should show Java 17
-mvn -version   # Should show Maven 3.6 or higher
+java -version  # Devrait afficher Java 17
+mvn -version   # Devrait afficher Maven 3.6 ou supérieur
 ```
 
 
-## Dev guide
+## Guide de développement
 
-To set up the project, you must follow these steps:
+Pour installer le projet, vous devez suivre ces étapes :
 ```bash
 mvn clean install
 ```
 
-
-To launch the Spring Boot application, use the following command:
-
+Tester votre installation avec : 
 ```bash
 mvn spring-boot:run
 ```
 
-You should see some logs indicating the MCP server is up and running:
+Cette commande doit démarrer un serveur MCP (en mode HTTP) sur http://localhost:8001/mcp. Logs attendus:
 ```logs
 [...]
 Registered tools: 1
@@ -52,3 +52,12 @@ Tomcat started on port 8001 (http) with context path '/'
 [...]
 Started McpServerApplication
 ```
+
+### Configurer votre IDE
+Ajouter le serveur MCP dans votre IDE pour pouvoir le tester directment avec Copilot
+- Mode : HTTP
+- Nom : datahub-mcp
+- Url : http://localhost:8001/mcp
+
+Vérifie que le serveur est bien actif avec Copilot en lui demandant : "#magic-add 3 + 4
+". Le résultat devrait être 10 !
