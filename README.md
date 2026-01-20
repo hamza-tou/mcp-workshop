@@ -2,7 +2,6 @@
 
 Ce repository est un support de workshop pour apprendre à **mettre en place un serveur MCP** et à exposer des capacités d’une **API HTTP existante** à un assistant IA, dans un contexte réaliste de développement.
 
----
 
 ## 🎯 Objectif
 
@@ -13,7 +12,6 @@ L’objectif est de comprendre comment MCP agit comme une **façade sémantique*
 
 L’objectif est de comprendre comment MCP agit comme une **façade sémantique** au-dessus d’une API existante, sans refonte de celle-ci.
 
----
 
 ## ✅ Prérequis
 
@@ -22,7 +20,6 @@ L’objectif est de comprendre comment MCP agit comme une **façade sémantique*
 - Notions de base : JSON, appels HTTP, fonctions / méthodes
 - **GitHub Copilot activé dans VS Code**
 
----
 
 ## 📖 Contexte — DataHub
 
@@ -40,91 +37,29 @@ L’API fonctionne, mais elle n’est pas conçue pour être utilisée par un LL
 
 L’équipe décide donc d’ajouter un **serveur MCP local**, indépendant de l’API, afin d’exposer uniquement les capacités utiles à un assistant IA.
 
----
 
 ## 🔌 API Endpoints — DataHub
 
-L’API DataHub existante fournit les endpoints suivants :
-
-### Santé
-- `GET /health`  
-  Vérifier que l’API est opérationnelle.
-
----
-
-### 📄 Documents internes
-
-- `GET /documents`  
-  Lister les documents internes  
-  **Filtres disponibles** :
-  - `tag` (ex: `security`, `architecture`, `onboarding`)
-  - `owner` (ex: `platform`, `payments`)
-  - `updated_after` (date ISO)
-
-- `GET /documents/{doc_id}`  
-  Récupérer un document  
-  *(titre, contenu, tags, propriétaire, date de mise à jour)*
-
----
-
-### 🔎 Recherche
-
-- `GET /search`  
-  Recherche texte dans les contenus internes  
-  **Paramètres** :
-  - `q` : texte libre
-  - `scope` : `docs` | `snippets`
-  - `limit` : nombre maximum de résultats (défaut : 5)
-
-> ⚠️ Cette route retourne des **résultats partiels** (id, titre, extrait), pas le contenu complet.
-
----
-
-### 🧩 Snippets
-
-- `GET /snippets`  
-  Lister les snippets disponibles  
-  **Filtres disponibles** :
-  - `type` : `command` | `config` | `template`
-  - `service` : nom du service concerné
-
-- `GET /snippets/{snippet_id}`  
-  Récupérer un snippet précis  
-  *(contenu, type, service associé)*
-
----
-
-### 📚 Métadonnées internes
-
-- `GET /tags`  
-  Lister l’ensemble des tags utilisés dans DataHub
-
-- `GET /owners`  
-  Lister les équipes propriétaires des documents
+- `GET /health` — Vérifier que l'API est opérationnelle
+- `GET /documents` — Lister les documents internes (filtres : tag, owner, updated_after)
+- `GET /documents/{doc_id}` — Récupérer un document complet
+- `GET /search` — Recherche texte dans les contenus (paramètres : q, scope, limit)
+- `GET /snippets` — Lister les snippets disponibles (filtres : type, service)
+- `GET /snippets/{snippet_id}` — Récupérer un snippet précis
+- `GET /tags` — Lister l'ensemble des tags utilisés
+- `GET /owners` — Lister les équipes propriétaires des documents
 
 
----
-
-
-## 📁 Structure du projet
+## 📁 Structure du projet:
 
 ```
 mcp-workshop/
 ├── README.md                # Ce fichier
-├── US 1 à US 6.md          # User Stories
-└── python/                  # Implémentation Python
-    ├── README.md            # Guide détaillé
-    ├── pyproject.toml       # Configuration uv
-    ├── datahub_api/         # API DataHub (FastAPI)
-    │   ├── main.py          # 8 endpoints REST
-    │   ├── models.py        # Modèles Pydantic
-    │   └── data/            # Données de test (JSON)
-    └── datahub_mcp/         # Serveurs MCP
-        ├── server.py        # Serveur à compléter (exercices)
-        └── reference_server/   # Serveur complet (solution)
+├── US 1 à US 6.md           # User Stories (exercices pratiques du workshop)
+└── python/                  # Version Python du serveur MCP
+└── java/                    # Version Java du serveur MCP
+├── datahub_api/             # API DataHub (backend pré-existant)
 ```
-
----
 
 ## 📚 Ressources
 

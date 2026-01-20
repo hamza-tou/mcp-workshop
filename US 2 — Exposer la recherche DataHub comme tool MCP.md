@@ -4,137 +4,32 @@ En tant que développeur,
 je souhaite exposer la recherche DataHub comme tool MCP,  
 afin qu’un assistant IA puisse rechercher des contenus internes sans connaître l’API.
 
----
-
 ## WHY
 
-La route `GET /search` est puissante mais difficile à utiliser sans documentation.  
-L’exposer comme tool MCP permet un usage guidé et fiable par un LLM.
-
----
+La route `GET /search` est puissante mais difficile à utiliser sans être développeur.  
+L’exposer comme tool MCP permet un usage guidé en "language humain".
 
 ## WHAT
 
-Créer un tool MCP nommé **`search_datahub`** qui encapsule :
+Créer un tool MCP nommé **`search_datahub`** qui permet de rechercher tout datahub en encapsulant :
 - l'endpoint `GET /search` de l'API DataHub
 - les paramètres `query`, `scope`, `limit`
 
-**Client HTTP à utiliser** :
-
-Pour faire les appels HTTP vers l'API DataHub, utilisez `httpx` (déjà installé dans les dépendances) :
-
-```python
-import httpx
-
-API_BASE_URL = "http://localhost:8000"
-
-# Exemple d'appel HTTP async
-async with httpx.AsyncClient() as client:
-    response = await client.get(
-        f"{API_BASE_URL}/search",
-        params={"q": query, "scope": scope, "limit": limit}
-    )
-    response.raise_for_status()
-    data = response.json()
-```
-
----
-
 ## HOW
 
-### Prérequis
+0. Assures toi que l'API de DataHub tourne sur ton poste (suit les instructions dans `datahub_api/README.md`)
+1. Inspire toi de l'exemple Hello World pour créer un nouveau fichier (`search_tool.py` ou `SearchTool.java`) 
+2. Définit un nouveau tool `search-datahub`:
+    - Utilises le client de l'API (`datahub_client.py` ou `DataHubClient.java`) pour effectuer une recherche sur datahub
+    - Formatte le résultat sous forme de texte pour qu'il soit compréhensible par un LLM
+4. (Re)Lance le serveur MCP et vérifue ton tool avec Copilot :
+    - #search_datahub
+    - "Cherche des documents sur GraphQL"
+    - "Trouve des snippets Redis"
 
-L'API DataHub doit être lancée :
-```bash
-cd python/
-uv run fastapi dev datahub_api/main.py --port 8000
-```
-
-### Création du tool
-
-Travaille dans `python/datahub_mcp/server.py`.
-
-**Étapes à suivre** :
-
-1. **Décommenter l'import `httpx`** en haut du fichier (ligne 4)
-2. **Décommenter la fonction `search_datahub`** (section US2)
-   - Le code du client HTTP est déjà fourni
-   - Le décorateur `@mcp.tool()` est déjà en place
-   - La documentation est déjà complète
-3. **Compléter le formatage et retourner les résultats** :
-   - Par exemple : afficher le titre, le type et un extrait de chaque résultat
-
-<details>
-<summary>💡 Voir la solution</summary>
-
-**Structure d'un tool avec FastMCP** :
-```python
-from fastmcp import FastMCP
-import httpx
-
-mcp = FastMCP("DataHub MCP")
-API_BASE_URL = "http://localhost:8000"
-
-@mcp.tool()
-async def search_datahub(
-    query: str,
-    scope: str = "docs",
-    limit: int = 10
-) -> str:
-    """
-    Recherche dans DataHub (documents ou snippets).
-    
-    Args:
-        query: Texte à rechercher (ex: "graphql", "kubernetes")
-        scope: "docs" pour documents, "snippets" pour code
-        limit: Nombre maximum de résultats (1-100)
-    
-    Returns:
-        Résultats formatés en texte lisible
-    """
-    async with httpx.AsyncClient() as client:
-        try:
-            response = await client.get(
-                f"{API_BASE_URL}/search",
-                params={"q": query, "scope": scope, "limit": limit}
-            )
-            response.raise_for_status()
-            data = response.json()
-            
-            # Formater et retourner les résultats
-            # ...
-            
-        except httpx.HTTPError as e:
-            return f"Erreur: {str(e)}"
-```
-
-</details>
-
-### Lancement
-
-```bash
-uv run python python/datahub_mcp/server.py
-```
-
-### Test avec GitHub Copilot
-
-Configurez ce serveur MCP dans VS Code et testez :
-- #search_datahub
-- "Cherche des documents sur GraphQL"
-- "Trouve des snippets Redis"
-
----
-
-## RESSOURCES
-
-- [API DataHub](python/datahub_api/README.md) - Tous les endpoints documentés
-- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Implémentation du tool search_datahub
-- [Documentation FastMCP](https://github.com/jlowin/fastmcp)
-
----
 
 ## VALIDATION CRITERIA
 
-- Le tool est déclaré et visible côté serveur MCP
-- L’appel du tool déclenche bien `GET /search`
+- Le serveur MCP redémarre sans erreur sur `http://localhost:8001`
+- Le tool `search-datahub` est accessible et retourne le message attendu
 - Les résultats sont retournés dans un format exploitable
