@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: datahub-mcp
+  ai:
+    mcp:
+      server:
+        protocol: STREAMABLE
+        type: SYNC
+        annotation-scanner:
+          enabled: true
+        streamable-http:
+          mcp-endpoint: /
+
+server:
+  port: 8001
+
+logging:
+  level:
+    root: INFO
+    com.taskflow: DEBUG
