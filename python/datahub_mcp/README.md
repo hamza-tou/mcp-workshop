@@ -11,10 +11,10 @@ Le serveur MCP doit être lancé sur `localhost:8001` :
 
 ```bash
 # Avec votre serveur (à compléter)
-uv run python python/mcp/server.py
+uv run python python/datahub_mcp/server.py
 
 # Ou avec le serveur de référence (solution complète)
-uv run python python/mcp/reference_server/server.py
+uv run python python/datahub_mcp/reference_server/server.py
 ```
 
 ## Tester avec GitHub Copilot

@@ -33,7 +33,7 @@ uv run fastapi dev datahub_api/main.py --port 8000
 
 ### Création du tool
 
-Travaille dans `python/mcp/server.py`.
+Travaille dans `python/datahub_mcp/server.py`.
 
 <details>
 <summary>💡 Voir la solution</summary>
@@ -84,7 +84,7 @@ async def search_datahub(
 ### Lancement
 
 ```bash
-uv run python python/mcp/server.py
+uv run python python/datahub_mcp/server.py
 ```
 
 ### Test avec GitHub Copilot
@@ -99,7 +99,7 @@ Configurez ce serveur MCP dans VS Code et testez :
 ## RESSOURCES
 
 - [API DataHub](python/datahub_api/README.md) - Tous les endpoints documentés
-- [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation du tool search_datahub
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Implémentation du tool search_datahub
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
 
 ---

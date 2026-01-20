@@ -14,7 +14,7 @@ Le serveur de référence sert deux objectifs :
 Depuis la racine du projet :
 
 ```bash
-uv run fastmcp dev python/mcp/reference_server/server.py
+uv run fastmcp dev python/datahub_mcp/reference_server/server.py
 ```
 
 Vous devriez voir des logs indiquant que le serveur MCP est démarré.

@@ -38,14 +38,14 @@ Améliorer l'utilisabilité MCP en modifiant uniquement :
 
 2. **Serveur MCP lancé** :
    ```bash
-   uv run python python/mcp/server.py
+   uv run python python/datahub_mcp/server.py
    ```
 
 3. **GitHub Copilot configuré** pour utiliser ce serveur (`http://localhost:8001`)
 
 ### Identification des problèmes
 
-Pour cet exercice, nous allons améliorer les descriptions des tools et resources dans `python/mcp/server.py`. Vous pouvez consulter `python/mcp/reference_server/server.py` pour voir des exemples de bonnes descriptions.
+Pour cet exercice, nous allons améliorer les descriptions des tools et resources dans `python/datahub_mcp/server.py`. Vous pouvez consulter `python/datahub_mcp/reference_server/server.py` pour voir des exemples de bonnes descriptions.
 
 #### Problème 1 : Paramètre `scope` trop vague
 **Symptôme** : Le LLM utilise parfois le tool avec `scope="all"` ou `scope="everything"` qui n'existent pas.
@@ -77,7 +77,7 @@ Pour cet exercice, nous allons améliorer les descriptions des tools et resource
 
 ### Processus d'amélioration
 
-1. **Ouvrir** `python/mcp/server.py`
+1. **Ouvrir** `python/datahub_mcp/server.py`
 2. **Améliorer** les descriptions en :
    - Listant les valeurs possibles pour les enums (ex: `scope` doit être "docs" ou "snippets")
    - Donnant des exemples concrets de `doc_id` (ex: "kubernetes-deployment", "rest-api-design")
@@ -108,9 +108,9 @@ Comparez avant/après :
 
 ## RESSOURCES
 
-- [Guide MCP](python/mcp/README.md) - Comment tester avec Copilot
-- [Serveur de travail](python/mcp/server.py) - Code avec descriptions à améliorer
-- [Serveur de référence](python/mcp/reference_server/server.py) - Exemple de bonnes descriptions
+- [Guide MCP](python/datahub_mcp/README.md) - Comment tester avec Copilot
+- [Serveur de travail](python/datahub_mcp/server.py) - Code avec descriptions à améliorer
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Exemple de bonnes descriptions
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
 
 ---

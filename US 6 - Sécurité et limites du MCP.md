@@ -182,14 +182,14 @@ def sanitize_content(content: str) -> str:
    uv run fastapi dev datahub_api/main.py --port 8000
    ```
 
-2. **Travailler dans le serveur existant** : `python/mcp/server.py`
+2. **Travailler dans le serveur existant** : `python/datahub_mcp/server.py`
 
 3. **Serveur MCP lancé** :
    ```bash
-   uv run python python/mcp/server.py
+   uv run python python/datahub_mcp/server.py
    ```
 
-   Vous pouvez consulter `python/mcp/reference_server/server.py` pour voir la solution complète.
+   Vous pouvez consulter `python/datahub_mcp/reference_server/server.py` pour voir la solution complète.
 
 ### Exercice Partie A : Mesurer l'impact du contexte
 
@@ -284,8 +284,8 @@ async def get_document_unsafe(doc_id: str) -> str:
 
 ## RESSOURCES
 
-- [Guide MCP](python/mcp/README.md) - Comment tester avec Copilot
-- [Serveur de référence](python/mcp/reference_server/server.py) - Exemples de bonnes pratiques
+- [Guide MCP](python/datahub_mcp/README.md) - Comment tester avec Copilot
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Exemples de bonnes pratiques
 - [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) - Risques de sécurité LLM
 - [MCP Security Guidelines](https://modelcontextprotocol.io/docs/security)
 

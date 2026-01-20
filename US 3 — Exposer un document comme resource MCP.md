@@ -32,7 +32,7 @@ uv run fastapi dev datahub_api/main.py --port 8000
 
 ### Création de la resource
 
-Travaille dans `python/mcp/server.py`.
+Travaille dans `python/datahub_mcp/server.py`.
 
 <details>
 <summary>💡 Voir la solution</summary>
@@ -95,7 +95,7 @@ Liste complète : `curl http://localhost:8000/docs`
 ### Lancement
 
 ```bash
-uv run python python/mcp/server.py
+uv run python python/datahub_mcp/server.py
 ```
 
 
@@ -110,7 +110,7 @@ Testez :
 ## RESSOURCES
 
 - [API DataHub](python/datahub_api/README.md) - Liste des documents disponibles
-- [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation de la resource get_document
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Implémentation de la resource get_document
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
 
 ---

@@ -43,7 +43,7 @@ python/
 │       ├── documents.json
 │       ├── snippets.json
 │       └── tags.json
-└── mcp/                       # Serveurs MCP
+└── datahub_mcp/               # Serveurs MCP
     ├── README.md              # Guide pour tester avec Copilot
     ├── server.py              # Serveur MCP à compléter (exercices)
     └── reference_server/      # Implémentation de référence complète

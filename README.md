@@ -119,7 +119,7 @@ mcp-workshop/
     │   ├── main.py          # 8 endpoints REST
     │   ├── models.py        # Modèles Pydantic
     │   └── data/            # Données de test (JSON)
-    └── mcp/                 # Serveurs MCP
+    └── datahub_mcp/         # Serveurs MCP
         ├── server.py        # Serveur à compléter (exercices)
         └── reference_server/   # Serveur complet (solution)
 ```

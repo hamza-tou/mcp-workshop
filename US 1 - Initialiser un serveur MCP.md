@@ -24,7 +24,7 @@ Créer un serveur MCP minimal capable de :
 
 ### Création du serveur
 
-Travaille dans `python/mcp/server.py`.
+Travaille dans `python/datahub_mcp/server.py`.
 
 <details>
 <summary>💡 Voir la solution</summary>
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 Depuis le répertoire `python/` :
 ```bash
-uv run python python/mcp/server.py
+uv run python python/datahub_mcp/server.py
 ```
 
 ### Logs attendus
@@ -65,7 +65,7 @@ Starting MCP server 'DataHub MCP Server' with transport 'http' on ...
 
 ### Tester le tool
 
-Une fois le serveur lancé et connecté à Copilot (voir [Guide pour connecter le serveur à GitHub Copilot](python/mcp/README.md)) :
+Une fois le serveur lancé et connecté à Copilot (voir [Guide pour connecter le serveur à GitHub Copilot](python/datahub_mcp/README.md)) :
 ```
 # Dans Copilot Chat
 #hello_server
@@ -89,9 +89,9 @@ Alternativement, vous pouvez aussi arrêter le processus directement dans le ter
 ## RESSOURCES
 
 - [Guide Python complet](python/README.md) - Setup détaillé avec uv
-- [Guide MCP](python/mcp/README.md) - Comment tester avec Copilot
+- [Guide MCP](python/datahub_mcp/README.md) - Comment tester avec Copilot
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
-- [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation complète
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Implémentation complète
 
 ---
 
