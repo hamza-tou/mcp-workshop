@@ -20,15 +20,15 @@ public class DataHubClient {
     
     /**
      * Get all available tags from DataHub API
-     * @return List of tags
+     * @return List of tags with descriptions
      * @throws RestClientException if the request fails
      */
-    public List<String> getAvailableTags() {
+    public List<DataHubTag> getAvailableTags() {
         try {
             return restClient.get()
                     .uri("/tags")
                     .retrieve()
-                    .body(new org.springframework.core.ParameterizedTypeReference<List<String>>() {});
+                    .body(new org.springframework.core.ParameterizedTypeReference<List<DataHubTag>>() {});
         } catch (RestClientException e) {
             throw new RestClientException("Failed to fetch tags from DataHub API", e);
         }
@@ -88,7 +88,7 @@ public class DataHubClient {
         try {
             List<DataHubDocument> results = restClient.get()
                     .uri(uriBuilder -> uriBuilder
-                            .path("/docs")
+                            .path("/documents")
                             .queryParam("tag", tag)
                             .build())
                     .retrieve()
@@ -140,7 +140,7 @@ public class DataHubClient {
     public DataHubDocument getDocumentById(String docId) {
         try {
             return restClient.get()
-                    .uri("/docs/" + docId)
+                    .uri("/documents/" + docId)
                     .retrieve()
                     .body(DataHubDocument.class);
         } catch (RestClientException e) {

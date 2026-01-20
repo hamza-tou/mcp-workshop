@@ -37,7 +37,7 @@ async def health():
     return HealthResponse(status="healthy", version="1.0.0")
 
 
-@app.get("/docs", response_model=list[Document])
+@app.get("/documents", response_model=list[Document])
 async def list_documents(
     tag: Optional[str] = Query(None, description="Filtrer par tag"),
     owner: Optional[str] = Query(None, description="Filtrer par propriétaire"),
@@ -74,7 +74,7 @@ async def list_documents(
     return results
 
 
-@app.get("/docs/{doc_id}", response_model=Document)
+@app.get("/documents/{doc_id}", response_model=Document)
 async def get_document(doc_id: str):
     """Récupérer un document spécifique par son ID."""
     for doc in DOCUMENTS:
