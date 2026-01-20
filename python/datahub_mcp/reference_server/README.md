@@ -30,7 +30,7 @@ Vous devriez voir des logs indiquant que le serveur MCP est démarré.
 
 ### Resources
 
-1. **datahub://docs/{doc_id}** - Récupère le contenu complet d'un document
+1. **datahub://documents/{doc_id}** - Récupère le contenu complet d'un document
 2. **datahub://snippets/{snippet_id}** - Récupère un snippet de code
 
 ## Architecture

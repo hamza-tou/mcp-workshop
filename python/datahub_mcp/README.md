@@ -44,7 +44,7 @@ Dans GitHub Copilot Chat, vous pouvez appeler les tools et resources avec le sym
 #### Exemples avec les resources :
 ```
 # Accéder à un document spécifique
-#datahub://docs/rest-api-design
+#datahub://documents/rest-api-design
 
 # Accéder à un snippet
 #datahub://snippets/graphql-query-example

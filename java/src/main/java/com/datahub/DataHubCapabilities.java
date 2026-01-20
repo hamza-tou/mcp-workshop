@@ -184,7 +184,7 @@ public class DataHubCapabilities {
     }
 
     @McpResource(
-        uri = "datahub://docs/{docId}",
+        uri = "datahub://documents/{docId}",
         name = "DataHub Document",
         description = "Retrieve the complete content of a DataHub document"
     )
