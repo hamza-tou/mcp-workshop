@@ -28,5 +28,5 @@ Créer un serveur MCP minimal capable de :
 
 ## VALIDATION CRITERIA
 
-- Le serveur MCP dreémarre sans erreur sur `http://localhost:8001`
+- Le serveur MCP redémarre sans erreur sur `http://localhost:8001`
 - Le tool `hello_world` est accessible et retourne le message attendu
