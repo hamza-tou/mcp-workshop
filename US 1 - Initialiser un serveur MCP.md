@@ -15,16 +15,17 @@ Ce serveur MCP servira de fondation pour les expérimentations futures.
 
 ## WHAT
 
+On veut mettre en place un Tool MCP qui dit "Hello mcp server here !"
+
 Créer un serveur MCP minimal capable de :
 - démarrer localement
-- afficher des logs de démarrage
 - exposer un tool simple `hello_server` pour tester la communication
 
 ## HOW
 
 ### Création du serveur
 
-Travaille dans `python/datahub_mcp/server.py`.
+Ouvrir le fichier `python/datahub_mcp/server.py` puis décommenter code correspondant au tool hello_server et au lancement du serveur.
 
 <details>
 <summary>💡 Voir la solution</summary>
