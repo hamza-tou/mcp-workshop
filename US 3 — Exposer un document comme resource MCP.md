@@ -25,8 +25,8 @@ L'agent doit pouvoir :
 
 **Ce que tu dois créer** :
 
-Une **resource MCP** nommée `datahub://docs/{doc_id}` qui :
-- Récupère le contenu d'un document depuis l'API DataHub (`GET /docs/{doc_id}`)
+Une **resource MCP** nommée `datahub://documents/{doc_id}` qui :
+- Récupère le contenu d'un document depuis l'API DataHub (`GET /documents/{doc_id}`)
 - **Formate le résultat en texte lisible** pour l'agent IA (titre, métadonnées, contenu)
 - Permet à l'agent d'accéder directement au document en tapant `#` dans Copilot Chat puis en sélectionnant la resource
 
@@ -61,7 +61,7 @@ import httpx
 mcp = FastMCP("DataHub MCP")
 API_BASE_URL = "http://localhost:8000"
 
-@mcp.resource("datahub://docs/{doc_id}")
+@mcp.resource("datahub://documents/{doc_id}")
 async def get_document(doc_id: str) -> str:
     """
     Récupère le contenu complet d'un document DataHub.
@@ -74,7 +74,7 @@ async def get_document(doc_id: str) -> str:
     """
     async with httpx.AsyncClient() as client:
         try:
-            response = await client.get(f"{API_BASE_URL}/docs/{doc_id}")
+            response = await client.get(f"{API_BASE_URL}/documents/{doc_id}")
             response.raise_for_status()
             doc = response.json()
             
@@ -106,7 +106,7 @@ Quelques `doc_id` à tester :
 - `kubernetes-deployment`
 - `api-authentication`
 
-Liste complète : `curl http://localhost:8000/docs`
+Liste complète : `curl http://localhost:8000/documents`
 
 ### Lancement
 

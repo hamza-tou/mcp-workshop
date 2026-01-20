@@ -90,7 +90,7 @@ async def list_documents_by_tag(tag: str) -> str:
     async with httpx.AsyncClient() as client:
         try:
             response = await client.get(
-                f"{API_BASE_URL}/docs", params={"tag": tag}, timeout=10.0
+                f"{API_BASE_URL}/documents", params={"tag": tag}, timeout=10.0
             )
             response.raise_for_status()
             docs = response.json()
@@ -192,7 +192,7 @@ async def get_available_tags() -> str:
 # ===== RESOURCES =====
 
 
-@mcp.resource("datahub://docs/{doc_id}")
+@mcp.resource("datahub://documents/{doc_id}")
 async def get_document(doc_id: str) -> str:
     """
     Récupère le contenu complet d'un document DataHub.
@@ -205,7 +205,9 @@ async def get_document(doc_id: str) -> str:
     """
     async with httpx.AsyncClient() as client:
         try:
-            response = await client.get(f"{API_BASE_URL}/docs/{doc_id}", timeout=10.0)
+            response = await client.get(
+                f"{API_BASE_URL}/documents/{doc_id}", timeout=10.0
+            )
             response.raise_for_status()
             doc = response.json()
 

@@ -62,7 +62,7 @@ Pour cet exercice, nous allons améliorer les descriptions des tools et resource
 **À améliorer** : La description du paramètre `limit`
 
 #### Problème 3 : Resource document sans contexte d'usage
-**Symptôme** : Le LLM essaye d'accéder à `datahub://docs/kubernetes` au lieu de `kubernetes-deployment`.
+**Symptôme** : Le LLM essaye d'accéder à `datahub://documents/kubernetes` au lieu de `kubernetes-deployment`.
 
 **Cause** : La description de la resource ne précise pas le format des `doc_id`.
 

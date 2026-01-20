@@ -58,16 +58,16 @@ curl http://localhost:8000/health
 
 ### Documents
 
-- **GET /docs** - Lister les documents (avec filtres optionnels)
+- **GET /documents** - Lister les documents (avec filtres optionnels)
   ```bash
-  curl "http://localhost:8000/docs"
-  curl "http://localhost:8000/docs?tag=api"
-  curl "http://localhost:8000/docs?owner=alice.martin@company.com"
+  curl "http://localhost:8000/documents"
+  curl "http://localhost:8000/documents?tag=api"
+  curl "http://localhost:8000/documents?owner=alice.martin@company.com"
   ```
 
-- **GET /docs/{doc_id}** - Récupérer un document spécifique
+- **GET /documents/{doc_id}** - Récupérer un document spécifique
   ```bash
-  curl "http://localhost:8000/docs/rest-api-design"
+  curl "http://localhost:8000/documents/rest-api-design"
   ```
 
 ### Search

@@ -54,14 +54,14 @@ L’API DataHub existante fournit les endpoints suivants :
 
 ### 📄 Documents internes
 
-- `GET /docs`  
+- `GET /documents`  
   Lister les documents internes  
   **Filtres disponibles** :
   - `tag` (ex: `security`, `architecture`, `onboarding`)
   - `owner` (ex: `platform`, `payments`)
   - `updated_after` (date ISO)
 
-- `GET /docs/{doc_id}`  
+- `GET /documents/{doc_id}`  
   Récupérer un document  
   *(titre, contenu, tags, propriétaire, date de mise à jour)*
 
