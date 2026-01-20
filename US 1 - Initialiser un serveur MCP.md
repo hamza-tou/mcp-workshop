@@ -4,8 +4,6 @@ En tant que développeur,
 je souhaite initialiser et démarrer un serveur MCP local,  
 afin de disposer d’une base technique pour exposer l’API DataHub à un assistant IA.
 
----
-
 ## WHY
 
 Avant d’exposer des capacités métier, il est nécessaire de valider que l’environnement MCP est correctement installé et fonctionnel.  
