@@ -15,9 +15,28 @@ L’exposer comme tool MCP permet un usage guidé et fiable par un LLM.
 
 ## WHAT
 
-Créer un tool MCP qui encapsule :
-- l’endpoint `GET /search`
+Créer un tool MCP nommé **`search_datahub`** qui encapsule :
+- l'endpoint `GET /search` de l'API DataHub
 - les paramètres `query`, `scope`, `limit`
+
+**Client HTTP à utiliser** :
+
+Pour faire les appels HTTP vers l'API DataHub, utilisez `httpx` (déjà installé dans les dépendances) :
+
+```python
+import httpx
+
+API_BASE_URL = "http://localhost:8000"
+
+# Exemple d'appel HTTP async
+async with httpx.AsyncClient() as client:
+    response = await client.get(
+        f"{API_BASE_URL}/search",
+        params={"q": query, "scope": scope, "limit": limit}
+    )
+    response.raise_for_status()
+    data = response.json()
+```
 
 ---
 
@@ -33,7 +52,17 @@ uv run fastapi dev datahub_api/main.py --port 8000
 
 ### Création du tool
 
-Travaille dans `python/mcp/server.py`.
+Travaille dans `python/datahub_mcp/server.py`.
+
+**Étapes à suivre** :
+
+1. **Décommenter l'import `httpx`** en haut du fichier (ligne 4)
+2. **Décommenter la fonction `search_datahub`** (section US2)
+   - Le code du client HTTP est déjà fourni
+   - Le décorateur `@mcp.tool()` est déjà en place
+   - La documentation est déjà complète
+3. **Compléter le formatage et retourner les résultats** :
+   - Par exemple : afficher le titre, le type et un extrait de chaque résultat
 
 <details>
 <summary>💡 Voir la solution</summary>
@@ -84,7 +113,7 @@ async def search_datahub(
 ### Lancement
 
 ```bash
-uv run python python/mcp/server.py
+uv run python python/datahub_mcp/server.py
 ```
 
 ### Test avec GitHub Copilot
@@ -99,7 +128,7 @@ Configurez ce serveur MCP dans VS Code et testez :
 ## RESSOURCES
 
 - [API DataHub](python/datahub_api/README.md) - Tous les endpoints documentés
-- [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation du tool search_datahub
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Implémentation du tool search_datahub
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
 
 ---

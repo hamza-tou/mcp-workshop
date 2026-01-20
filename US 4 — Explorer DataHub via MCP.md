@@ -61,10 +61,10 @@ Accomplir 6 missions d'exploration via GitHub Copilot en utilisant uniquement le
 2. **Serveur MCP lancé** (au choix) :
    ```bash
    # Serveur de référence
-   uv run python python/mcp/reference_server/server.py
+   uv run python python/datahub_mcp/reference_server/server.py
    
    # OU votre implémentation (si exercices 2-3 complétés)
-   uv run python python/mcp/server.py
+   uv run python python/datahub_mcp/server.py
    ```
 
 3. **GitHub Copilot configuré** pour utiliser votre serveur MCP
@@ -93,7 +93,7 @@ Listez les problèmes d'utilisabilité pour l'exercice 5 :
 
 ## RESSOURCES
 
-- [Serveur de référence](python/mcp/reference_server/server.py) - Tous les tools et resources
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Tous les tools et resources
 - [Données API](python/datahub_api/data/) - Documents et snippets disponibles
 
 ---

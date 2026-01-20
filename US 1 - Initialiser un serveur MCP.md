@@ -15,16 +15,17 @@ Ce serveur MCP servira de fondation pour les expérimentations futures.
 
 ## WHAT
 
+On veut mettre en place un Tool MCP qui dit "Hello mcp server here !"
+
 Créer un serveur MCP minimal capable de :
 - démarrer localement
-- afficher des logs de démarrage
 - exposer un tool simple `hello_server` pour tester la communication
 
 ## HOW
 
 ### Création du serveur
 
-Travaille dans `python/mcp/server.py`.
+Ouvrir le fichier `python/datahub_mcp/server.py` puis décommenter code correspondant au tool hello_server et au lancement du serveur.
 
 <details>
 <summary>💡 Voir la solution</summary>
@@ -53,7 +54,7 @@ if __name__ == "__main__":
 
 Depuis le répertoire `python/` :
 ```bash
-uv run python python/mcp/server.py
+uv run python python/datahub_mcp/server.py
 ```
 
 ### Logs attendus
@@ -65,7 +66,7 @@ Starting MCP server 'DataHub MCP Server' with transport 'http' on ...
 
 ### Tester le tool
 
-Une fois le serveur lancé et connecté à Copilot :
+Une fois le serveur lancé et connecté à Copilot (voir [Guide pour connecter le serveur à GitHub Copilot](python/datahub_mcp/README.md)) :
 ```
 # Dans Copilot Chat
 #hello_server
@@ -89,9 +90,9 @@ Alternativement, vous pouvez aussi arrêter le processus directement dans le ter
 ## RESSOURCES
 
 - [Guide Python complet](python/README.md) - Setup détaillé avec uv
-- [Guide MCP](python/mcp/README.md) - Comment tester avec Copilot
+- [Guide MCP](python/datahub_mcp/README.md) - Comment tester avec Copilot
 - [Documentation FastMCP](https://github.com/jlowin/fastmcp)
-- [Serveur de référence](python/mcp/reference_server/server.py) - Implémentation complète
+- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Implémentation complète
 
 ---
 

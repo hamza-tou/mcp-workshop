@@ -105,66 +105,6 @@ L’API DataHub existante fournit les endpoints suivants :
 
 ---
 
-## 🧪 Exercices
-
-Les exercices sont **indépendants** :
-- Tu peux en sauter un et continuer les suivants.
-- Certains exercices utilisent le **serveur MCP de référence**.
-
-- **US1** : Initialiser et démarrer un serveur MCP minimal
-- **US2** : Exposer l’endpoint `GET /search` comme tool MCP
-- **US3** : Exposer un document interne comme resource MCP
-- **US4** : Résoudre plusieurs tâches métier via MCP
-- **US5** : Améliorer l’utilisabilité MCP (descriptions et schémas)
-- **US6** : Sécurité et limites du MCP (descriptions et schémas)
-
----
-
-## 🚀 Démarrage rapide
-
-### Installation
-
-1. **Installer uv** (gestionnaire de dépendances Python) :
-   ```bash
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-
-2. **Installer les dépendances** :
-   ```bash
-   cd python/
-   uv sync
-   ```
-
-### Lancer l'API DataHub
-
-```bash
-cd python/
-uv run uvicorn datahub_api.main:app --reload --port 8000
-```
-
-L'API sera disponible sur `http://localhost:8000`. Documentation interactive : http://localhost:8000/docs
-
-### Lancer un serveur MCP
-
-Dans un autre terminal :
-
-```bash
-# Votre serveur (à compléter selon les exercices)
-uv run python python/mcp/server.py
-
-# Ou le serveur de référence (solution complète)
-uv run python python/mcp/reference_server/server.py
-```
-
-### Suivre les exercices
-
-1. Lisez chaque User Story (US 1 à US 6)
-2. Modifiez progressivement `python/mcp/server.py` selon les instructions
-3. Consultez `python/mcp/reference_server/server.py` en cas de blocage
-4. Testez avec GitHub Copilot
-5. Vérifiez les critères de validation
-
----
 
 ## 📁 Structure du projet
 
@@ -179,7 +119,7 @@ mcp-workshop/
     │   ├── main.py          # 8 endpoints REST
     │   ├── models.py        # Modèles Pydantic
     │   └── data/            # Données de test (JSON)
-    └── mcp/                 # Serveurs MCP
+    └── datahub_mcp/         # Serveurs MCP
         ├── server.py        # Serveur à compléter (exercices)
         └── reference_server/   # Serveur complet (solution)
 ```
