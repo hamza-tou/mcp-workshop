@@ -15,8 +15,24 @@ Les exposer comme resource MCP est plus simple et plus adapté qu’un tool.
 
 ## WHAT
 
-Créer une resource MCP exposant :
-- un document interne accessible via `GET /docs/{doc_id}`
+**Use-case** : Un développeur demande à l'agent IA :  
+_"Donne-moi les bonnes pratiques pour concevoir une API REST"_
+
+L'agent doit pouvoir :
+1. **Chercher** des documents pertinents avec le tool `search_datahub` (US2)
+2. **Accéder au contenu complet** du document trouvé via une **resource MCP**
+3. **Synthétiser** les bonnes pratiques pour répondre à la question
+
+**Ce que tu dois créer** :
+
+Une **resource MCP** nommée `datahub://docs/{doc_id}` qui :
+- Récupère le contenu d'un document depuis l'API DataHub (`GET /docs/{doc_id}`)
+- **Formate le résultat en texte lisible** pour l'agent IA (titre, métadonnées, contenu)
+- Permet à l'agent d'accéder directement au document en tapant `#` dans Copilot Chat puis en sélectionnant la resource
+
+**Différence avec un tool** :
+- Un **tool** = action que l'agent peut **exécuter** (rechercher, créer, modifier)
+- Une **resource** = contenu que l'agent peut **lire** et **référencer** (document, fichier, page)
 
 ---
 
@@ -99,11 +115,16 @@ uv run python python/datahub_mcp/server.py
 ```
 
 
-### Test avec GitHub Copilot
+### Test de la resource MCP
 
-Testez :
-- "#nom-du-serveur-mcp Montre moi le document "rest-api-design"
-- "Lis le guide sur Kubernetes (doc ID: kubernetes-deployment)"
+**Vérifier que la resource est exposée :**
+
+1. Dans VSCode, ouvrez la vue **MCP**
+2. Cliquez sur **List servers**
+3. Sélectionnez votre serveur (`test-mcp` ou le nom de votre serveur)
+4. Cliquez sur **Browse Resources**
+5. Cherchez la ressource `get_document` et cliquz dessus
+5. Cherchez l'id `rest-api-design`
 
 ---
 
