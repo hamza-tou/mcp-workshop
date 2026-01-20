@@ -1,6 +1,7 @@
 """Serveur MCP pour DataHub - À compléter selon les exercices."""
 
 from fastmcp import FastMCP
+# import httpx  # Décommenter pour US2
 
 # TODO: Créer une instance FastMCP avec un nom descriptif
 # mcp = FastMCP("DataHub MCP Server")
@@ -23,8 +24,31 @@ API_BASE_URL = "http://localhost:8000"
 # TODO: Implémenter après US1
 # @mcp.tool()
 # async def search_datahub(query: str, scope: str = "docs", limit: int = 10) -> str:
-#     """Recherche dans DataHub."""
-#     pass
+#     """
+#     Recherche dans DataHub (documents ou snippets).
+#
+#     Args:
+#         query: Texte à rechercher (ex: "graphql", "kubernetes")
+#         scope: "docs" pour documents, "snippets" pour code
+#         limit: Nombre maximum de résultats (1-100)
+#
+#     Returns:
+#         Résultats formatés en texte lisible
+#     """
+#     # Client HTTP pour appeler l'API DataHub
+#     async with httpx.AsyncClient() as client:
+#         try:
+#             response = await client.get(
+#                 f"{API_BASE_URL}/search",
+#                 params={"q": query, "scope": scope, "limit": limit}
+#             )
+#             response.raise_for_status()
+#             data = response.json()
+#
+#             # TODO: Formater et retourner les résultats
+#
+#         except httpx.HTTPError as e:
+#             return f"Erreur: {str(e)}"
 
 
 # ===== RESOURCES =====
