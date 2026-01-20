@@ -6,8 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class HelloWorldTools {
 
-    @McpTool(name = "hello", description = "A simple hello world tool that returns a greeting message")
-    public String hello() {
-        return "Hello mcp server here !";
+    @McpTool(name = "magic-add", description = "Do a 'magic' addition between two numbers")
+    public int magicAdd(int a, int b) {
+        int magicNumber = 3;
+        return a + b + magicNumber;
     }
 }

@@ -10,8 +10,7 @@ afin de disposer d’une base technique pour exposer l’API DataHub à un assis
 
 Avant d’exposer des capacités métier, il est nécessaire de valider que l’environnement MCP est correctement installé et fonctionnel.  
 Ce serveur MCP servira de fondation pour les expérimentations futures.
-
----
+Notre tech lead a déjà commencé le travail et souhaiterait que tu développes un nouveau tool qui nous servirait d'exemple.
 
 ## WHAT
 
@@ -19,86 +18,17 @@ On veut mettre en place un Tool MCP qui dit "Hello mcp server here !"
 
 Créer un serveur MCP minimal capable de :
 - démarrer localement
-- exposer un tool simple `hello_server` pour tester la communication
+- exposer un tool simple `hello_world` pour tester la communication
 
 ## HOW
 
-### Création du serveur
+1. Reprend le travail du tech lead (`hello_tool.py` ou `HelloTool.java`)
+2. Inspire toi de l'exemple du tool d'addition pour exposer un nouveau tool `hello_world` qui retourne "Hello mcp server here !"
+3. (Re)Lance le serveur MCP en suivant les instructions du README.md (`python/README.md` ou `java/README.md`)
+4. Vérifie que le tool est bien actif avec Copilot en lui demandant : "Que dit #hello_world ?"
 
-Ouvrir le fichier `python/datahub_mcp/server.py` puis décommenter code correspondant au tool hello_server et au lancement du serveur.
-
-<details>
-<summary>💡 Voir la solution</summary>
-
-**Structure minimale avec FastMCP** :
-```python
-from fastmcp import FastMCP
-
-# Créer l'instance du serveur
-mcp = FastMCP("DataHub MCP Server")
-
-# Tool simple pour tester
-@mcp.tool()
-def hello_server() -> str:
-    """Tool de test simple qui retourne un message de bienvenue."""
-    return "Hello mcp server here !"
-
-# Point d'entrée
-if __name__ == "__main__":
-    mcp.run(transport="http", port=8001, host="localhost")
-```
-
-</details>
-
-### Démarrage
-
-Depuis le répertoire `python/` :
-```bash
-uv run python python/datahub_mcp/server.py
-```
-
-### Logs attendus
-
-Vous devriez voir quelque chose comme :
-```
-Starting MCP server 'DataHub MCP Server' with transport 'http' on ...
-```
-
-### Tester le tool
-
-Une fois le serveur lancé et connecté à Copilot (voir [Guide pour connecter le serveur à GitHub Copilot](python/datahub_mcp/README.md)) :
-```
-# Dans Copilot Chat
-#hello_server
-```
-
-Vous devriez recevoir : `Hello mcp server here !`
-
-### Arrêter le serveur
-
-Pour arrêter le serveur MCP depuis VS Code :
-
-1. Ouvrir la palette de commandes (`Cmd+Shift+P` sur Mac)
-2. Chercher et sélectionner : **MCP: List Servers**
-3. Choisir le serveur à arrêter dans la liste
-4. Cliquer sur le bouton **Stop** ou sélectionner l'option d'arrêt
-
-Alternativement, vous pouvez aussi arrêter le processus directement dans le terminal avec `Ctrl+C`.
-
----
-
-## RESSOURCES
-
-- [Guide Python complet](python/README.md) - Setup détaillé avec uv
-- [Guide MCP](python/datahub_mcp/README.md) - Comment tester avec Copilot
-- [Documentation FastMCP](https://github.com/jlowin/fastmcp)
-- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Implémentation complète
-
----
 
 ## VALIDATION CRITERIA
 
-- Le serveur MCP démarre sans erreur sur `http://localhost:8001`
-- Les logs indiquent que le serveur est prêt avec 1 tool
-- Le tool `hello_server` est accessible et retourne le message attendu
-- Le serveur peut être connecté à GitHub Copilot via HTTP
+- Le serveur MCP dreémarre sans erreur sur `http://localhost:8001`
+- Le tool `hello_world` est accessible et retourne le message attendu

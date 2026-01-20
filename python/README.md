@@ -2,6 +2,21 @@
 
 Ce guide vous accompagne dans la mise en place et l'utilisation de l'environnement Python pour le workshop MCP.
 
+
+## Structure du projet
+
+```
+python/
+├── pyproject.toml              # Configuration uv et dépendances
+├── README.md                   # Ce fichier
+└── datahub_mcp/               # Serveurs MCP
+    ├── README.md              # Guide pour tester avec Copilot
+    ├── hello_tool.py          # Fake MCP server
+    ├── server.py              # Serveur MCP à compléter (exercices)
+    └── reference_server/      # Implémentation de référence complète
+        └── server.py          # Solution complète (si bloqué)
+```
+
 ## Prérequis
 
 - Python 3.11 ou supérieur
@@ -27,53 +42,28 @@ Depuis le répertoire `python/` :
 uv sync
 ```
 
-Cette commande va créer un environnement virtuel et installer toutes les dépendances (FastAPI, uvicorn, fastmcp, httpx, etc.).
+### Lancer le serveur MCP
 
-## Structure du projet
-
-```
-python/
-├── pyproject.toml              # Configuration uv et dépendances
-├── README.md                   # Ce fichier
-├── datahub_api/               # API DataHub (FastAPI)
-│   ├── main.py                # Point d'entrée de l'API
-│   ├── models.py              # Modèles Pydantic
-│   ├── README.md              # Documentation API
-│   └── data/                  # Données de test
-│       ├── documents.json
-│       ├── snippets.json
-│       └── tags.json
-└── datahub_mcp/               # Serveurs MCP
-    ├── README.md              # Guide pour tester avec Copilot
-    ├── server.py              # Serveur MCP à compléter (exercices)
-    └── reference_server/      # Implémentation de référence complète
-        └── server.py          # Solution complète (si bloqué)
-```
-
-## Démarrage rapide
-
-### 1. Lancer l'API DataHub
-
-L'API DataHub doit tourner en permanence pour que les serveurs MCP puissent l'interroger :
-
+Tester votre installation avec : 
 ```bash
-cd python/
-uv run uvicorn datahub_api.main:app --reload --port 8000
+uv run python datahub_mcp/hello_tool.py
 ```
 
-L'API sera disponible sur `http://localhost:8000`
-
-**Vérification** :
-```bash
-# Expected response: {"status":"healthy"}
-curl http://localhost:8000/health
+Cette commande doit démarrer un serveur MCP (en mode HTTP) sur http://localhost:8001/mcp. Logs attendus:
+```
+[01/20/26 17:15:12] INFO     Starting MCP server 'Demo 🚀' with transport 'http' on
+ http://localhost:8001/mcp                                                          
+INFO:     Started server process [293122]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://localhost:8001 (Press CTRL+C to quit)
 ```
 
-**Documentation interactive** : http://localhost:8000/docs
 
-## Ressources utiles
+### Configurer votre IDE
+Ajouter le serveur MCP dans votre IDE pour pouvoir le tester directment avec Copilot
+- Mode : HTTP
+- Nom : datahub-mcp
+- Url : http://localhost:8001/mcp
 
-- [Documentation FastAPI](https://fastapi.tiangolo.com/)
-- [Documentation FastMCP](https://github.com/jlowin/fastmcp)
-- [Documentation MCP](https://modelcontextprotocol.io/)
-- [Documentation uv](https://docs.astral.sh/uv/)
+Vérifie que le serveur est bien actif avec Copilot en lui demandant : "#magic-add 3 + 4". Le résultat devrait être 10 !

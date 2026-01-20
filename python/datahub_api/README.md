@@ -126,3 +126,33 @@ Les données sont chargées au démarrage de l'API depuis les fichiers JSON dans
 Cette API sert de backend pour les exercices MCP. Les serveurs MCP que vous allez créer interrogeront cette API pour exposer ses fonctionnalités aux LLMs de manière plus utilisable.
 
 **Important** : L'API doit tourner en permanence pendant que vous travaillez sur les exercices MCP.
+
+
+
+## Démarrage rapide
+
+### 1. Lancer l'API DataHub
+
+L'API DataHub doit tourner en permanence pour que les serveurs MCP puissent l'interroger :
+
+```bash
+cd python/
+uv run uvicorn datahub_api.main:app --reload --port 8000
+```
+
+L'API sera disponible sur `http://localhost:8000`
+
+**Vérification** :
+```bash
+# Expected response: {"status":"healthy"}
+curl http://localhost:8000/health
+```
+
+**Documentation interactive** : http://localhost:8000/docs
+
+## Ressources utiles
+
+- [Documentation FastAPI](https://fastapi.tiangolo.com/)
+- [Documentation FastMCP](https://github.com/jlowin/fastmcp)
+- [Documentation MCP](https://modelcontextprotocol.io/)
+- [Documentation uv](https://docs.astral.sh/uv/)
