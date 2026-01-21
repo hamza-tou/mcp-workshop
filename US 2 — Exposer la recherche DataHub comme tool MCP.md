@@ -28,6 +28,12 @@ Créer un tool MCP nommé **`search_datahub`** qui permet de rechercher tout dat
     - "Trouve des snippets Redis"
 
 
+## RESOURCES
+
+- [FastMCP @tool](https://gofastmcp.com/servers/tools#the-@tool-decorator)
+- [SpringAI @McpTool](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-annotations-server.html#_mcptool)
+
+
 ## VALIDATION CRITERIA
 
 - Le serveur MCP redémarre sans erreur sur `http://localhost:8001`
