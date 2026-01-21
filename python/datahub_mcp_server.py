@@ -17,7 +17,7 @@ def hello_server() -> str:
     return "Hello mcp server here !"
 
 
-@mcp.tool()
+@mcp.tool(name="search-datahub")
 async def search_datahub(query: str, scope: str = "docs", limit: int = 10) -> str:
     """
     Recherche dans DataHub.
@@ -66,7 +66,7 @@ async def search_datahub(query: str, scope: str = "docs", limit: int = 10) -> st
         return f"Erreur lors de la recherche: {str(e)}"
 
 
-@mcp.tool()
+@mcp.tool(name="list-documents-by-tag")
 async def list_documents_by_tag(tag: str) -> str:
     """
     Liste les documents ayant un tag spécifique.
@@ -96,7 +96,7 @@ async def list_documents_by_tag(tag: str) -> str:
         return f"Erreur: {str(e)}"
 
 
-@mcp.tool()
+@mcp.tool(name="list-snippets")
 async def list_snippets(
     type: Optional[str] = None, service: Optional[str] = None
 ) -> str:
@@ -137,7 +137,7 @@ async def list_snippets(
         return f"Erreur: {str(e)}"
 
 
-@mcp.tool()
+@mcp.tool(name="get-available-tags")
 async def get_available_tags() -> str:
     """
     Liste tous les tags disponibles dans DataHub.
