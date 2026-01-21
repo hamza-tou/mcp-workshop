@@ -35,7 +35,23 @@ L’API fonctionne, mais elle n’est pas conçue pour être utilisée par un LL
 - paramètres peu explicites
 - aucune description exploitable automatiquement
 
-L’équipe décide donc d’ajouter un **serveur MCP local**, indépendant de l’API, afin d’exposer uniquement les capacités utiles à un assistant IA.
+L’équipe décide donc d’ajouter un **serveur MCP local**, indépendant de l’API, afin d’exposer uniquement les capacités utiles à un agent IA (Github Copilot).
+
+**Architecture cible :**
+```mermaid
+sequenceDiagram
+    participant Dev as User (Dev)
+    participant Copilot as MCP Client<br/>GitHub Copilot (local)
+    participant MCP as MCP Server<br/>DataHubMCP Server
+    participant API as DataHub API
+
+    Dev->>Copilot: Question / action (ex: Résume les connaissances de datahub sur kubernetes)
+    Copilot->>MCP: MCP request (ex: search-document kubernetes)
+    MCP->>API: API call (ex: GET /documents?query=kubernetes)
+    API-->>MCP: Documents as structured response (application/json)
+    MCP-->>Copilot: MCP response (Natural language - Human/LLM friendly response)
+    Copilot-->>Dev: Réponse contextualisée / action assistée
+```
 
 
 ## 🔌 API Endpoints -  DataHub
