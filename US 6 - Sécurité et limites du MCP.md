@@ -1,4 +1,4 @@
-# US6 — Sécurité et limites du MCP
+# US6 -  Sécurité et limites du MCP
 
 En tant que développeur,  
 je souhaite comprendre les risques et limitations liés à l'utilisation de MCP,  

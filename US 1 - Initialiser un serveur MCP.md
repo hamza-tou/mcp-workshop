@@ -1,4 +1,4 @@
-# US1 — Initialiser un serveur MCP
+# US1 -  Initialiser un serveur MCP
 
 En tant que développeur,  
 je souhaite initialiser et démarrer un serveur MCP local,  

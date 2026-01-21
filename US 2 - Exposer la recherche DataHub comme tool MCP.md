@@ -1,4 +1,4 @@
-# US2 — Exposer la recherche DataHub comme tool MCP
+# US2 -  Exposer la recherche DataHub comme tool MCP
 
 En tant que développeur,  
 je souhaite exposer la recherche DataHub comme tool MCP,  

@@ -1,4 +1,4 @@
-# US3 — Exposer un document comme resource MCP
+# US3 -  Exposer un document comme resource MCP
 
 En tant que développeur,  
 je souhaite exposer un document interne comme resource MCP,  

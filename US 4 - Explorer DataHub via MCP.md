@@ -1,4 +1,4 @@
-# US4 — Explorer DataHub via MCP
+# US4 -  Explorer DataHub via MCP
 
 En tant que développeur,  
 je souhaite utiliser un assistant IA pour explorer DataHub via MCP,  
