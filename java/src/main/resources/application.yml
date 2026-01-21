@@ -13,6 +13,7 @@ spring:
 
 server:
   port: 8001
+  shutdown: immediate
 
 datahub:
   api:
