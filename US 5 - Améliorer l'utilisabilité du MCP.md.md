@@ -25,7 +25,7 @@ Améliorer l'utilisabilité MCP en modifiant uniquement :
 
 ## HOW
 0. Assures toi que l'API de DataHub tourne sur ton poste (suit les instructions dans `datahub_api/README.md`)
-1. Démarres le serveur MCP développé par l'API ( `FULL_MCP=TRUE mvn spring-boot:run` ou `uv run python datahub_mcp_server.py`)
+1. Démarres le serveur MCP développé par l'équipe ( `FULL_MCP=TRUE mvn spring-boot:run` ou `uv run python datahub_mcp_server.py`)
 2. Améliorer les descriptions une à une, à partir des problèmes identifiés
 3. Testes dans COpilot avec les prompts d'exemple (avant/après) pour t'assurer de la correction
 
