@@ -13,12 +13,14 @@ import org.springaicommunity.mcp.annotation.McpResource;
 import org.springaicommunity.mcp.annotation.McpTool;
 import org.springaicommunity.mcp.annotation.McpToolParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
 @Component
+@ConditionalOnProperty(name = "FULL_MCP", havingValue = "TRUE")
 public class DataHubCapabilities {
 
     private static final Logger logger = LoggerFactory.getLogger(DataHubCapabilities.class);
