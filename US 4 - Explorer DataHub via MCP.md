@@ -4,17 +4,25 @@ En tant que développeur,
 je souhaite utiliser un assistant IA pour explorer DataHub via MCP,  
 afin de répondre à plusieurs questions métier sans connaître l’API.
 
----
 
 ## WHY
-
-L’objectif est de valider que MCP permet une exploration réelle et efficace de l’API DataHub.
-
----
+L'équipe a bien avancé sur le développement du serveur MCP, elle souhaite maintenant valider que cet outil permet une exploration réelle et efficace de l’API DataHub.
 
 ## WHAT
 
 Accomplir 6 missions d'exploration via GitHub Copilot en utilisant uniquement le serveur MCP (sans interroger l'API directement).
+
+## HOW
+ 
+
+0. Assures toi que l'API de DataHub tourne sur ton poste (suit les instructions dans `datahub_api/README.md`)
+1. Démarres le serveur MCP développé par l'API ( `FULL_MCP=TRUE mvn spring-boot:run` ou `uv run python datahub_mcp_server.py`)
+2. Remplis les missions d'exploration :
+   1. Formules un prompt naturel à GitHub Copilot
+   2. Observes quels tools/resources sont utilisés
+   3. Vérifies que le résultat est correct
+   4. Notes les difficultés rencontrés, les confusions, ...
+
 
 ### Mission 1 : Découverte par tags
 **Objectif** : Trouver tous les documents avec le tag `api`
@@ -46,57 +54,6 @@ Accomplir 6 missions d'exploration via GitHub Copilot en utilisant uniquement le
 
 **Résultat attendu** : Synthèse basée sur `rest-api-design` et `graphql-intro`
 
----
-
-## HOW
-
-### Prérequis
-
-1. **API DataHub lancée** :
-   ```bash
-   cd python/
-   uv run fastapi dev datahub_api/main.py --port 8000
-   ```
-
-2. **Serveur MCP lancé** (au choix) :
-   ```bash
-   # Serveur de référence
-   uv run python python/datahub_mcp/reference_server/server.py
-   
-   # OU votre implémentation (si exercices 2-3 complétés)
-   uv run python python/datahub_mcp/server.py
-   ```
-
-3. **GitHub Copilot configuré** pour utiliser votre serveur MCP
-
-### Exécution des missions
-
-Pour chaque mission :
-1. Formulez un prompt naturel à GitHub Copilot
-2. Observez quels tools/resources sont utilisés
-3. Vérifiez que le résultat est correct
-
-### Observation
-
-Pour chaque mission, notez :
-- ✅ Le LLM a-t-il choisi le bon tool/resource ?
-- ✅ Les paramètres étaient-ils corrects ?
-- ✅ Le résultat était-il exploitable ?
-- ⚠️ Difficultés rencontrées ?
-
-Listez les problèmes d'utilisabilité pour l'exercice 5 :
-- Descriptions de tools/resources ambiguës ?
-- Paramètres mal documentés ?
-- Confusion entre tools similaires ?
-
----
-
-## RESSOURCES
-
-- [Serveur de référence](python/datahub_mcp/reference_server/server.py) - Tous les tools et resources
-- [Données API](python/datahub_api/data/) - Documents et snippets disponibles
-
----
 
 ## VALIDATION CRITERIA
 
