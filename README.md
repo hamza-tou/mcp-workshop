@@ -77,9 +77,18 @@ mcp-workshop/
 ├── datahub_api/             # API DataHub (backend pré-existant)
 ```
 
+## 🚀 Démarrage rapide
+0. Installe le projet avec le language de ton choix ([Guide Python](python/README.md) ou [Guide Java](java/README.md))
+1. Installe et démarre l'API de datahub [Guide Python](datahub_api/README.md)
+
+**Déroulement :**
+- Lis attentivement chaque user story (fichiers US X - ...md)
+- Suis les instructions HOW qui guident l'utilisation des modes Copilot
+- Valides que tous les critères d'acceptation sont remplis avant de passer à la suivante
+- Expérimentes : n'hésitez pas à essayer différentes formulations de prompts jusqu'à obtenir un prompt qui fonctionne du premier coup
+
 ## 📚 Ressources
 
-- [Guide Python](python/README.md)
-- [Documentation API](python/datahub_api/README.md)
 - [FastMCP](https://github.com/jlowin/fastmcp)
+- [Spring AI - MCP](https://docs.spring.io/spring-ai/reference/api/mcp/mcp-overview.html)
 - [MCP](https://modelcontextprotocol.io/)
