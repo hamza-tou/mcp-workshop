@@ -67,7 +67,7 @@ L'intégration d'un document malicieux peut **influencer le comportement d'un ag
 ## RESSOURCES
 
 - [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) - Risques de sécurité LLM
-- [MCP Security Guidelines](https://modelcontextprotocol.io/docs/security)
+- [MCP Security Guidelines](https://modelcontextprotocol.io/specification/2025-11-25/basic/security_best_practices)
 
 
 ## Bonnes pratiques à garder en tête
