@@ -78,7 +78,7 @@ mcp-workshop/
 ├── datahub_api/             # API DataHub (backend pré-existant)
 ```
 
-## 🚀 Démarrage rapide
+## 🚀 Démarrage rapide
 0. Installe le projet avec le language de ton choix ([Guide Python](python/README.md) ou [Guide Java](java/README.md))
 1. Installe et démarre l'API de datahub [Guide Python](datahub_api/README.md)
 
