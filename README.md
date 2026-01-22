@@ -5,12 +5,13 @@ Ce repository est un support de workshop pour apprendre à **mettre en place un 
 
 ## 🎯 Objectif
 
-L’objectif est de comprendre comment MCP agit comme une **façade sémantique** au-dessus d’une API existante, sans refonte de celle-ci.
+À l'issue de ce workshop, tu seras capable de mettre en place un serveur MCP fonctionnel (en Python ou Java):
+- Déclarer et exposer des **tools MCP** (actions invocables par un LLM)
+- Déclarer et exposer des **resources MCP** (données accessibles au LLM)
+- Tester et valider ton serveur MCP avec un client (GitHub Copilot)
+- Améliorer la compréhension et l'usage des capacités MCP par un LLM
+- Comprendre les risques de sécurité et optimiser les performances de ton serveur MCP
 
-- **Tools MCP** (actions métier appelables)
-- **Resources MCP** (données internes consultables)
-
-L’objectif est de comprendre comment MCP agit comme une **façade sémantique** au-dessus d’une API existante, sans refonte de celle-ci.
 
 
 ## ✅ Prérequis
