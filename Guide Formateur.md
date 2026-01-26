@@ -76,8 +76,27 @@ Valider l'environnement technique, comprendre le pattern de base d'un tool MCP e
 - Port déjà utilisé (autre serveur actif)
 - Test via curl au lieu du client Copilot (ne valide pas l'intégration MCP)
 
-## US - 2
+## US - 2 : Exposer la recherche DataHub comme tool MCP
+Encapsuler l'API DataHub dans un tool MCP pour rendre la recherche accessible via langage naturel, sans exposer la complexité de l'API REST.
+
+**Concepts théoriques clés** :
+- Tool MCP = façade conversationnelle sur une API existante
+- Tool = Act => La base des agents
+- Formatage de sortie pour LLM (texte lisible vs. JSON brut)
+- Préférence des LLM : Natural language > XML > JSON
+
+**Points d'attention/critères qualité** :
+- Réutilisation du client API (`datahub_client.py` / `DataHubClient.java`)
+- Description du tool explicite sur usage et paramètres
+
+**Erreurs fréquentes** :
+- API DataHub non démarrée (`http://localhost:8000`)
+- Retour JSON brut (illisible pour LLM)
+
 ## US - 3
+
 ## US - 4
+
 ## US - 5
+
 ## US - 6
