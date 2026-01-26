@@ -109,7 +109,21 @@ Permettre à l'agent IA d'accéder à du contenu informatif via une resource MCP
 - Confusion tool/resource (créer un tool au lieu d'une resource)
 - JSON brut non formaté pour lecture LLM
 
-## US - 4
+## US - 4 : Explorer DataHub via MCP
+Valider l'utilisabilité réelle du serveur MCP en accomplissant des missions métier variées via langage naturel :
+- Tester l'ergonomie utilisateur du serveur MCP en conditions réelles
+- Identifier les confusions, ambiguïtés ou échecs d'un agent
+
+**Concepts théoriques clés** :
+- MCP = abstraction conversationnelle : le LLM choisit tools/resources selon le besoin
+- Le LLM utilise la documentation exposée du MCP pour son choix de tools/ressources
+
+**Points d'attention/critères qualité** :
+- Lecture de la documentation des tools
+- Vérification dans Chat Debug View
+
+**Erreurs fréquentes** :
+- [Java] Serveur MCP lancé sans mode complet `FULL_MCP=TRUE`
 
 ## US - 5
 
