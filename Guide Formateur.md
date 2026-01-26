@@ -93,7 +93,21 @@ Encapsuler l'API DataHub dans un tool MCP pour rendre la recherche accessible vi
 - API DataHub non démarrée (`http://localhost:8000`)
 - Retour JSON brut (illisible pour LLM)
 
-## US - 3
+## US - 3 : Exposer un document comme resource MCP
+Permettre à l'agent IA d'accéder à du contenu informatif via une resource MCP plutôt qu'un tool, pour une lecture directe et référençable.
+
+**Concepts théoriques clés** :
+- Distinction tool vs. resource : tool = action exécutable, resource = contenu lisible et référençable
+- URI MCP : `datahub://documents/{doc_id}` comme point d'accès unique
+- Resources = accès via `#` dans Copilot Chat
+
+**Points d'attention/critères qualité** :
+- Resource visible dans **MCP: Browse Resources**
+- Contenu formaté en texte lisible (pas de JSON brut)
+
+**Erreurs fréquentes** :
+- Confusion tool/resource (créer un tool au lieu d'une resource)
+- JSON brut non formaté pour lecture LLM
 
 ## US - 4
 
