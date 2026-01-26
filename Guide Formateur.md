@@ -125,6 +125,19 @@ Valider l'utilisabilité réelle du serveur MCP en accomplissant des missions m�
 **Erreurs fréquentes** :
 - [Java] Serveur MCP lancé sans mode complet `FULL_MCP=TRUE`
 
-## US - 5
+## US - 5 : Améliorer l'utilisabilité du MCP
+Optimiser les descriptions MCP pour guider le LLM vers des usages corrects, sans modifier la logique métier.
+
+**Concepts théoriques clés** :
+- Descriptions MCP = documentation pour LLM (et documentation humaine)
+- Prompts de descriptions : expliciter valeurs possibles, recommandations, cas d'usage
+- Guidance LLM : orienter choix tools vs resources, paramètres, scope
+- Qualité descriptions = qualité expérience utilisateur LLM
+
+**Points d'attention/critères qualité** :
+- Tester avant/après avec prompts d'exemple
+- Expliciter valeurs possibles du paramètre `scope`
+- Recommander valeur par défaut pour `limit`
+- Clarification des case pour utiliser `search_datahub` vs resource `get_document`
 
 ## US - 6
