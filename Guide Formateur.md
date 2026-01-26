@@ -140,4 +140,17 @@ Optimiser les descriptions MCP pour guider le LLM vers des usages corrects, sans
 - Recommander valeur par défaut pour `limit`
 - Clarification des case pour utiliser `search_datahub` vs resource `get_document`
 
-## US - 6
+## US - 6 : Sécurité et limites du MCP
+Appréhender les risques de sécurité et performance liés à l'utilisation de MCP : consommation de tokens et prompt injection.
+
+**Concepts théoriques clés** :
+- Consommation de tokens : données illimitées = coût élevé + lenteur + saturation du contexte
+- Prompt injection : données malveillantes dans le contexte peuvent modifier le comportement LLM
+- Sanitization : nettoyer systématiquement les données avant exposition au LLM
+- Limite du "script" de sanitization
+- Limites et filtres : pagination, filtrage par type, limitation quantitative
+
+**Points d'attention/critères qualité** :
+- Tool `get-logs` : ajouter paramètres de filtre (type, limite max)
+- Sanitization active sur tous les champs retournés (notamment `owner`, `content`)
+- Observer impact via **Developer: Show Chat Debug View** (temps, tokens)
