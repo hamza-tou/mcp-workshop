@@ -55,6 +55,7 @@ Fortement guidé par le formateur, cette formation verticale est **100 % orient�
 |                                                           | Je déclare et expose une resource MCP                                          | Définition d’une resource MCP, exposition de données (fichier, données simulées), accès contrôlé à une ressource.                        |
 |                                                           | Je teste et valide mon serveur MCP avec un client MCP                          | Connexion d’un client MCP (Copilot VS Code), détection des tools et resources, appel d’un tool depuis le client, validation du résultat. |
 |                                                           | J’améliore la compréhension et l’usage des capacités MCP par un LLM            | Analyse du comportement LLM, Amélioration des descriptions MCP, Validation par test avec un client MCP                                   |
+|                                                           | J’assure la sécurité et la robustesse du serveur MCP                           | Prompt injection, Consommation de tokens, Limites de la sanitization |
 
 
 # Détails des exercices
