@@ -59,7 +59,7 @@ INFO:     Uvicorn running on http://localhost:8001 (Press CTRL+C to quit)
 
 
 ### Configurer votre IDE
-Ajouter le serveur MCP dans votre IDE pour pouvoir le tester directment avec Copilot
+Ajouter le serveur MCP dans votre IDE pour pouvoir le tester directment avec Copilot avec la command palette: `>MCP: Add Server...`
 - Mode : HTTP
 - Nom : datahub-mcp
 - Url : http://localhost:8001/mcp
